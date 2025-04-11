@@ -29,7 +29,7 @@ export const Container = styled.div`
 export const Modal = styled.div`
   padding: 15px;
   width: 100%;
-  /* height: 85%; */
+  height: 90%;
   /* min-width: 400px; */
   /* min-height: 400px; */
   background: ${colors.white};
