@@ -29,9 +29,9 @@ export const Container = styled.div`
 export const Modal = styled.div`
   padding: 15px;
   width: 100%;
-  height: 85%;
-  min-width: 400px;
-  min-height: 400px;
+  /* height: 85%; */
+  /* min-width: 400px; */
+  /* min-height: 400px; */
   background: ${colors.white};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -209,4 +209,13 @@ export const AreaInput = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 15px;
+`;
+
+export const Box = styled.div`
+  width: 100%;
+  margin-bottom: 45px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: start;
 `;

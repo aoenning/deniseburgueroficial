@@ -118,92 +118,94 @@ function Modal({ exibir, data, onClick, value, onChange }) {
         <s.Area>
           <s.Title>Preencha os dados do cliente</s.Title>
         </s.Area>
-        <s.AreaInput width="100%">
-          <s.TitleInput>Informe nome *</s.TitleInput>
-          <Input
-            width={"100%"}
-            type={"text"}
-            value={cliente.nome}
-            onChange={(e) => {
-              atualizarCliente("nome", e.target.value);
-            }}
-            backgroudColor={""}
-          />
-        </s.AreaInput>
-        <s.AreaInput width="100%">
-          <s.TitleInput>Telefone *</s.TitleInput>
-          <Input
-            width={"70%"}
-            type={"text"}
-            value={cliente.telefone}
-            onChange={(e) => {
-              handleSetMaskPhone("telefone", e.target.value);
-            }}
-            backgroudColor={""}
-          />
-        </s.AreaInput>
-        <s.Area>
-          <s.Title>Preencha os dados da entrega</s.Title>
-        </s.Area>
-        <s.AreaInput width="100%">
-          <s.TitleInput>Rua *</s.TitleInput>
-          <Input
-            type={"text"}
-            value={cliente.rua}
-            onChange={(e) => {
-              atualizarCliente("rua", e.target.value);
-            }}
-            backgroudColor={""}
-          />
-        </s.AreaInput>
-        <s.AreaInput width="100%">
-          <s.TitleInput>Numero *</s.TitleInput>
-          <Input
-            width={"40%"}
-            type={"text"}
-            value={cliente.numero}
-            onChange={(e) => {
-              atualizarCliente("numero", e.target.value);
-            }}
-            backgroudColor={""}
-          />
-        </s.AreaInput>
-        <s.AreaInput width="100%">
-          <s.TitleInput>Ponto de referência</s.TitleInput>
-          <Input
-            width={"100%"}
-            type={"text"}
-            value={cliente.referencia}
-            onChange={(e) => {
-              atualizarCliente("referencia", e.target.value);
-            }}
-            backgroudColor={""}
-          />
-        </s.AreaInput>
-        <s.AreaInput width="100%">
-          <s.TitleInput>Bairro *</s.TitleInput>
-          <Input
-            width={"100%"}
-            type={"text"}
-            value={cliente.bairro}
-            onChange={(e) => {
-              atualizarCliente("bairro", e.target.value);
-            }}
-            backgroudColor={""}
-          />
-        </s.AreaInput>
-        <s.AreaInput width="100%">
-          <s.TitleInput>Cidade *</s.TitleInput>
-          <Input
-            width={"70%"}
-            type={"text"}
-            value={cliente.cidade}
-            onChange={(e) => {
-              atualizarCliente("cidade", e.target.value);
-            }}
-            backgroudColor={""}
-          />
-        </s.AreaInput>
+        <s.Box>
+          <s.AreaInput width="100%">
+            <s.TitleInput>Informe nome *</s.TitleInput>
+            <Input
+              width={"100%"}
+              type={"text"}
+              value={cliente.nome}
+              onChange={(e) => {
+                atualizarCliente("nome", e.target.value);
+              }}
+              backgroudColor={""}
+            />
+          </s.AreaInput>
+          <s.AreaInput width="100%">
+            <s.TitleInput>Telefone *</s.TitleInput>
+            <Input
+              width={"70%"}
+              type={"text"}
+              value={cliente.telefone}
+              onChange={(e) => {
+                handleSetMaskPhone("telefone", e.target.value);
+              }}
+              backgroudColor={""}
+            />
+          </s.AreaInput>
+          <s.Area>
+            <s.Title>Preencha os dados da entrega</s.Title>
+          </s.Area>
+          <s.AreaInput width="100%">
+            <s.TitleInput>Rua *</s.TitleInput>
+            <Input
+              type={"text"}
+              value={cliente.rua}
+              onChange={(e) => {
+                atualizarCliente("rua", e.target.value);
+              }}
+              backgroudColor={""}
+            />
+          </s.AreaInput>
+          <s.AreaInput width="100%">
+            <s.TitleInput>Numero *</s.TitleInput>
+            <Input
+              width={"40%"}
+              type={"text"}
+              value={cliente.numero}
+              onChange={(e) => {
+                atualizarCliente("numero", e.target.value);
+              }}
+              backgroudColor={""}
+            />
+          </s.AreaInput>
+          <s.AreaInput width="100%">
+            <s.TitleInput>Ponto de referência</s.TitleInput>
+            <Input
+              width={"100%"}
+              type={"text"}
+              value={cliente.referencia}
+              onChange={(e) => {
+                atualizarCliente("referencia", e.target.value);
+              }}
+              backgroudColor={""}
+            />
+          </s.AreaInput>
+          <s.AreaInput width="100%">
+            <s.TitleInput>Bairro *</s.TitleInput>
+            <Input
+              width={"100%"}
+              type={"text"}
+              value={cliente.bairro}
+              onChange={(e) => {
+                atualizarCliente("bairro", e.target.value);
+              }}
+              backgroudColor={""}
+            />
+          </s.AreaInput>
+          <s.AreaInput width="100%">
+            <s.TitleInput>Cidade *</s.TitleInput>
+            <Input
+              width={"70%"}
+              type={"text"}
+              value={cliente.cidade}
+              onChange={(e) => {
+                atualizarCliente("cidade", e.target.value);
+              }}
+              backgroudColor={""}
+            />
+          </s.AreaInput>
+        </s.Box>
         <s.AreaBotton>
           <BottomComponet
             width={"100%"}

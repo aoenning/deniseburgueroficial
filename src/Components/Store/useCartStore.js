@@ -151,7 +151,7 @@ const useCartStore = create((set) => ({
         rua: "",
         complemento: "",
         bairro: "",
-        cidade: "",
+        cidade: "Denise",
       },
       pagamento: "",
     }),
