@@ -213,7 +213,7 @@ export const AreaInput = styled.div`
 
 export const Box = styled.div`
   width: 100%;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: center;
   flex-direction: column;
