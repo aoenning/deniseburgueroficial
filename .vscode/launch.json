@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [       
+               
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Chrome com React",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000", // URL onde sua aplicação está rodando
+            "webRoot": "${workspaceFolder}/src", // Ajuste para o diretório onde está o código-fonte
+            "breakOnLoad": true,
+            "sourceMaps": true,
+            "trace": true
+          }
+    ]
+}
