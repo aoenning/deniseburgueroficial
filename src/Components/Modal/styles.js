@@ -29,7 +29,7 @@ export const Container = styled.div`
 export const Modal = styled.div`
   padding: 15px;
   width: 100%;
-  height: 90%;
+  height: 100%;
   /* min-width: 400px; */
   /* min-height: 400px; */
   background: ${colors.white};
@@ -40,7 +40,8 @@ export const Modal = styled.div`
   align-items: center;
   position: relative;
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
-  overflow: "auto";
+
+  /* margin-bottom: 20px;; */
 `;
 
 export const Area = styled.div`
@@ -164,6 +165,7 @@ export const Search = styled.div`
     border-color: ${colors.yello_primary};
     cursor: pointer;
   }
+  overflow: "auto";
 `;
 
 export const SearchInput = styled.input`
@@ -219,4 +221,5 @@ export const Box = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: start;
+  overflow: "auto";
 `;
