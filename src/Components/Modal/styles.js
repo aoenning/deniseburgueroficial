@@ -40,6 +40,7 @@ export const Modal = styled.div`
   align-items: center;
   position: relative;
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+  overflow: "auto";
 `;
 
 export const Area = styled.div`
