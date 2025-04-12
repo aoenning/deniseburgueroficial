@@ -24,6 +24,23 @@ const useCartStore = create((set) => ({
   },
   valorTotalItens: 0.0,
   valorTotalPedido: 0.0,
+  status: "Entregue",
+  pedido: {
+    cliente: {
+      nome: "",
+      telefone: "",
+      rua: "",
+      complemento: "",
+      bairro: "",
+      cidade: "Denise",
+    },
+    id: "",
+    itens: [],
+    status: "",
+    pagamento: "",
+    total: "",
+    data: "",
+  },
   cart: [],
   show: "",
   message: "",
@@ -196,6 +213,11 @@ const useCartStore = create((set) => ({
     set((state) => ({
       produto: { ...state.produto, [campo]: valor },
     })),
+
+  setStatus: (value) =>
+    set({
+      status: value,
+    }),
 
   setShow: (value) =>
     set({
@@ -508,6 +530,26 @@ const useCartStore = create((set) => ({
       return {
         valorTotalPedido: total,
       };
+    }),
+
+  SetDadosPedido: (dados) =>
+    set({
+      pedido: {
+        cliente: {
+          nome: dados.cliente.nome,
+          telefone: dados.cliente.telefone,
+          rua: dados.cliente.rua,
+          complemento: dados.cliente.complemento,
+          bairro: dados.cliente.bairro,
+          cidade: dados.cliente.cidade,
+        },
+        itens: dados.itens,
+        id: dados.id,
+        status: dados.status,
+        pagamento: dados.pagamento,
+        total: dados.total,
+        data: dados.data,
+      },
     }),
 
   AddItemPedido: (item) =>

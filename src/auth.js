@@ -30,7 +30,7 @@ export const loginUnico = async () => {
 
   try {
     await signInWithEmailAndPassword(auth, email, senha);
-    // alert("Logado com sucesso!");
+    return true;
   } catch (error) {
     // alert("Erro no login:", error);
   }

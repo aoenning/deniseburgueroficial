@@ -7,44 +7,130 @@ import Header from "../../Components/CustomHeader";
 import Footer from "../../Components/SidebarButton";
 import img from "../../assets/denise_burguer.jpg";
 import useProdutoStore from "../../Components/Store/useCartStore";
+import { Clock, ChefHat, Truck, CheckCircle } from "lucide-react";
 import * as s from "./styles";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
+import { FaSync } from "react-icons/fa";
+import { loginUnico } from "./../../auth";
 
 function Pedidos() {
-  const [listCardapioBurgers, setListCardapioBurgers] = useState([]);
-  const [listCardapioBebidas, setListCardapioBebidas] = useState([]);
-  const { SetDadosLocalStore, DadoslocalStorage } = useProdutoStore();
+  const {
+    SetDadosLocalStore,
+    DadoslocalStorage,
+    cliente,
+    pedido,
+    status,
+    SetDadosPedido,
+    setStatus,
+  } = useProdutoStore();
+
+  const [dadosPedido, setDadosPedido] = useState([]);
 
   useEffect(() => {
-    let cardapioBurgers = burgers();
-    setListCardapioBurgers(cardapioBurgers);
+    const newPedido = pedido;
+    const telefone = localStorage.getItem("telefone");
+    buscarPedidosPendentesPorTelefone(telefone);
+  }, [status]);
 
-    let cardapioBebidas = bebidas();
-    setListCardapioBebidas(cardapioBebidas);
-
-    const nomeUser = localStorage.getItem("nome");
-    const telefoneUser = localStorage.getItem("telefone");
-
-    const dados = {
-      nome: nomeUser,
-      telefone: telefoneUser,
-    };
-
-    if (dados) {
-      SetDadosLocalStore(dados);
+  useEffect(() => {
+    const logado = loginUnico();
+    if (logado) {
+      // alert("usuario logado");
     }
   }, []);
+
+  const steps = [
+    { label: "pendente", icon: <Clock size={24} /> },
+    { label: "preparacao", icon: <ChefHat size={24} color="green" /> },
+    { label: "rota", icon: <Truck size={24} /> },
+    { label: "entregue", icon: <CheckCircle size={24} /> },
+  ];
+
+  const currentStepIndex = steps.findIndex((step) => step.label === status);
+
+  const buscarPedidosPendentesPorTelefone = async (telefone) => {
+    try {
+      const pedidosRef = collection(db, "pedidos");
+      const q = query(
+        pedidosRef,
+        where("cliente.telefone", "==", telefone),
+        where("status", "!=", "entregue")
+      );
+
+      const snapshot = await getDocs(q);
+      const pedidos = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      if (pedidos.length > 0) {
+        const p = pedidos[0];
+        const dados = {
+          cliente: p.cliente,
+          itens: p.itens,
+          id: p.id,
+          status: p.status,
+          pagamento: p.pagamento,
+          total: p.total,
+          data: p.data,
+        };
+        SetDadosPedido(dados);
+        setStatus(dados.status);
+      }
+
+      return pedidos;
+    } catch (error) {
+      console.error("Erro ao buscar pedidos:", error);
+      return [];
+    }
+  };
+
   return (
     <s.Container>
-      {/* <Header height={"150px"} />
-      <s.Title>Cardápio Denise Burger</s.Title>
-      {listCardapioBurgers.map((burger) => (
-        <CustomCard burger={burger} />
-      ))}
-      <h1>Bebidas</h1>
-      {listCardapioBebidas.map((bebidas) => (
-        <CustomCardBebidas item={bebidas} />
-      ))} */}
-      <s.MainContainer></s.MainContainer>
+      <s.Title>Acompanhamento do Pedido</s.Title>
+      <s.PedidoInfo>
+        <s.InfoRow>
+          <strong>Cliente:</strong> {pedido.cliente.nome}
+        </s.InfoRow>
+        <s.InfoRow>
+          <strong>Telefone:</strong> {pedido.cliente.telefone}
+        </s.InfoRow>
+        <s.InfoRow>{/* <strong>Itens:</strong> */}</s.InfoRow>
+        <ul>
+          {pedido.itens.map((item, index) => (
+            <li key={index}>
+              {item.nome}
+              {item.adicionais?.length > 0 &&
+                `(+ ${item.adicionais.join(", ")})`}
+            </li>
+          ))}
+        </ul>
+        <s.InfoRow>
+          <strong>Total: </strong>
+          {pedido.total.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </s.InfoRow>
+        <s.InfoRow>
+          <strong>Data:</strong> {pedido.data}
+        </s.InfoRow>
+        <s.InfoRow>
+          <strong>Status atual:</strong> {status}
+        </s.InfoRow>
+      </s.PedidoInfo>
+
+      <s.Steps>
+        {steps.map((step, index) => (
+          <s.Step key={index}>
+            <s.IconWrapper active={index <= currentStepIndex}>
+              {step.icon}
+            </s.IconWrapper>
+            <s.Label active={index <= currentStepIndex}>{step.label}</s.Label>
+          </s.Step>
+        ))}
+      </s.Steps>
       <Footer />
     </s.Container>
   );

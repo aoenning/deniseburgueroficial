@@ -35,6 +35,9 @@ function ResumoPedido() {
     limparProduto,
     clearAdicionais,
     clearCart,
+    pedido,
+    SetDadosPedido,
+    setStatus,
   } = useProdutoStore();
   const navigate = useNavigate();
 
@@ -64,7 +67,12 @@ function ResumoPedido() {
     try {
       const docRef = await addDoc(collection(db, "pedidos"), pedido);
       console.log("🙋 Pedido salvo com ID:", docRef.id);
+      localStorage.setItem("nome", cliente.nome);
+      localStorage.setItem("telefone", cliente.telefone);
+      localStorage.setItem("id_pedido", docRef.id);
+      setStatus("Pendente");
 
+      // SetDadosPedido(pedido);
       limparCliente();
       limparProduto();
       clearAdicionais();
