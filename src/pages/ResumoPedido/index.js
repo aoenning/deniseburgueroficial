@@ -70,7 +70,8 @@ function ResumoPedido() {
       localStorage.setItem("nome", cliente.nome);
       localStorage.setItem("telefone", cliente.telefone);
       localStorage.setItem("id_pedido", docRef.id);
-      setStatus("Pendente");
+      console.error("Id:", docRef.id);
+      // setStatus("Pendente");
 
       // SetDadosPedido(pedido);
       limparCliente();

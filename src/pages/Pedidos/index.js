@@ -9,7 +9,14 @@ import img from "../../assets/denise_burguer.jpg";
 import useProdutoStore from "../../Components/Store/useCartStore";
 import { Clock, ChefHat, Truck, CheckCircle } from "lucide-react";
 import * as s from "./styles";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 import { FaSync } from "react-icons/fa";
 import { loginUnico } from "./../../auth";
@@ -28,9 +35,8 @@ function Pedidos() {
   const [dadosPedido, setDadosPedido] = useState([]);
 
   useEffect(() => {
-    const newPedido = pedido;
-    const telefone = localStorage.getItem("telefone");
-    buscarPedidosPendentesPorTelefone(telefone);
+    // const newPedido = pedido;
+    buscarPedidosPendentesPorTelefone();
   }, [status]);
 
   useEffect(() => {
@@ -49,40 +55,68 @@ function Pedidos() {
 
   const currentStepIndex = steps.findIndex((step) => step.label === status);
 
-  const buscarPedidosPendentesPorTelefone = async (telefone) => {
+  const buscarPedidosPendentesPorTelefone = async () => {
+    // const telefone = localStorage.getItem("telefone");
+    const idPedido = localStorage.getItem("id_pedido");
+    // try {
+    //   const pedidosRef = collection(db, "pedidos");
+    //   const q = query(
+    //     pedidosRef,
+    //     where("cliente.telefone", "==", telefone),
+    //     where("status", "!=", "entregue")
+    //   );
+
+    //   const snapshot = await getDocs(q);
+    //   const pedidos = snapshot.docs.map((doc) => ({
+    //     id: doc.id,
+    //     ...doc.data(),
+    //   }));
+
+    //   if (pedidos.length > 0) {
+    //     const p = pedidos[0];
+    //     const dados = {
+    //       cliente: p.cliente,
+    //       itens: p.itens,
+    //       id: p.id,
+    //       status: p.status,
+    //       pagamento: p.pagamento,
+    //       total: p.total,
+    //       data: p.data,
+    //     };
+    //     SetDadosPedido(dados);
+    //     setStatus(dados.status);
+    //   }
+
+    //   return pedidos;
+    // } catch (error) {
+    //   console.error("Erro ao buscar pedidos:", error);
+    //   return [];
+    // }
+
     try {
-      const pedidosRef = collection(db, "pedidos");
-      const q = query(
-        pedidosRef,
-        where("cliente.telefone", "==", telefone),
-        where("status", "!=", "entregue")
-      );
+      const pedidoRef = doc(db, "pedidos", idPedido);
+      const pedidoSnap = await getDoc(pedidoRef);
 
-      const snapshot = await getDocs(q);
-      const pedidos = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      if (pedidoSnap.exists()) {
+        const p = pedidoSnap.data();
 
-      if (pedidos.length > 0) {
-        const p = pedidos[0];
         const dados = {
           cliente: p.cliente,
           itens: p.itens,
-          id: p.id,
+          id: pedidoSnap.id,
           status: p.status,
           pagamento: p.pagamento,
           total: p.total,
           data: p.data,
         };
-        SetDadosPedido(dados);
-        setStatus(dados.status);
-      }
 
-      return pedidos;
+        SetDadosPedido(dados);
+        setStatus(p.status); // ou dados.status
+      } else {
+        console.log("Pedido não encontrado.");
+      }
     } catch (error) {
-      console.error("Erro ao buscar pedidos:", error);
-      return [];
+      console.error("Erro ao buscar pedido por ID:", error);
     }
   };
 
@@ -101,8 +135,8 @@ function Pedidos() {
           {pedido.itens.map((item, index) => (
             <li key={index}>
               {item.nome}
-              {item.adicionais?.length > 0 &&
-                `(+ ${item.adicionais.join(", ")})`}
+              {/* {item.adicionais?.length > 0 &&
+                `(+ ${item.adicionais.join(", ")})`} */}
             </li>
           ))}
         </ul>
