@@ -3,20 +3,52 @@ import { colors, fonts } from "../../Styles";
 
 // Estilos Globais
 export const Container = styled.div`
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 2rem;
-  background: ${colors.white};
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-  font-family: "Arial", sans-serif;
+  width: 100%;
+  /* max-width: 400px; */
+  /* margin: 40px auto; */
+  /* padding: 0rem; */
+  /* background: ${colors.white}; */
+  /* border-radius: 20px; */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.08); */
+  /* font-family: "Arial", sans-serif; */
+  height: 100vh;
+`;
+
+export const Header = styled.div`
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* position: relative; */
+  width: 100%;
+  /* height: 60px; */
+  background: ${colors.brack};
+`;
+
+export const BoxIcon = styled.div`
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: auto;
+  margin-left: 10px;
+  /* border: 1px solid ${colors.white}; */
+  border-radius: 15px;
+  background-color: ${colors.brack};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 30px;
 `;
 
 export const Title = styled.h2`
   font-size: 1.4rem;
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #3e2723;
+  /* margin-bottom: 1.5rem; */
+  color: ${(props) => (props.color ? props.color : colors.header)};
+  font-family: ${fonts.primary};
 `;
 
 export const PedidoInfo = styled.div`
@@ -25,6 +57,19 @@ export const PedidoInfo = styled.div`
   border-radius: 12px;
   margin-bottom: 2rem;
   border: 1px solid #ffe0b2;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  margin: 15px;
+  padding: 15px;
+`;
+
+export const BoxItem = styled.h2`
+  margin: 15px;
+`;
+
+export const BoxLi = styled.li`
+  color: ${(props) => (props.color ? props.color : colors.header)};
+  font-family: ${fonts.primary};
+  font-size: 0.95rem;
 `;
 
 export const InfoRow = styled.p`

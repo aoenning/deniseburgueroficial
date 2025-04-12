@@ -9,6 +9,7 @@ import img from "../../assets/denise_burguer.jpg";
 import useProdutoStore from "../../Components/Store/useCartStore";
 import { Clock, ChefHat, Truck, CheckCircle } from "lucide-react";
 import * as s from "./styles";
+import { colors } from "../../Styles";
 import {
   collection,
   query,
@@ -122,8 +123,12 @@ function Pedidos() {
 
   return (
     <s.Container>
-      <s.Title>Acompanhamento do Pedido</s.Title>
+      <s.Header>
+        <s.Title color={colors.white}>Pedido</s.Title>
+      </s.Header>
+
       <s.PedidoInfo>
+        <s.Title>Acompanhamento do Pedido</s.Title>
         <s.InfoRow>
           <strong>Cliente:</strong> {pedido.cliente.nome}
         </s.InfoRow>
@@ -131,15 +136,17 @@ function Pedidos() {
           <strong>Telefone:</strong> {pedido.cliente.telefone}
         </s.InfoRow>
         <s.InfoRow>{/* <strong>Itens:</strong> */}</s.InfoRow>
-        <ul>
-          {pedido.itens.map((item, index) => (
-            <li key={index}>
-              {item.nome}
-              {/* {item.adicionais?.length > 0 &&
+        <s.BoxItem>
+          <ul>
+            {pedido.itens.map((item, index) => (
+              <s.BoxLi key={index}>
+                {item.nome}
+                {/* {item.adicionais?.length > 0 &&
                 `(+ ${item.adicionais.join(", ")})`} */}
-            </li>
-          ))}
-        </ul>
+              </s.BoxLi>
+            ))}
+          </ul>
+        </s.BoxItem>
         <s.InfoRow>
           <strong>Total: </strong>
           {pedido.total.toLocaleString("pt-BR", {
