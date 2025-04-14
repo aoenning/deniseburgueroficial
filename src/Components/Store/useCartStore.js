@@ -45,6 +45,7 @@ const useCartStore = create((set) => ({
   show: "",
   message: "",
   openMessagem: false,
+  tipoEntrega: "entrega",
   queijos: ["Mussarela", "Cheddar"],
   tipopagamento: ["pix", "cartão", "dinheiro"],
   pagamento: "",
@@ -153,12 +154,34 @@ const useCartStore = create((set) => ({
     bairro: "",
     cidade: "Denise",
   },
+
+  local: {
+    // nome: "",
+    // telefone: "",
+    rua: "Nossa Senhora Aparecida",
+    complemento: "Ao lado casa de festa SFFEST",
+    bairro: "Centro",
+    cidade: "Denise",
+  },
   //====================Cliente=======================
 
   atualizarCliente: (campo, valor) =>
     set((state) => ({
       cliente: { ...state.cliente, [campo]: valor },
     })),
+
+  setDadosCliente: (dados) =>
+    set({
+      cliente: {
+        nome: dados.nome,
+        telefone: dados.telefone,
+        rua: dados.rua,
+        numero: dados.numero,
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.cidade,
+      },
+    }),
 
   limparCliente: () =>
     set({
@@ -183,6 +206,11 @@ const useCartStore = create((set) => ({
         nome: dados.nome,
         telefone: dados.telefone,
       },
+    }),
+
+  setTipoEntrega: (value) =>
+    set({
+      tipoEntrega: value,
     }),
 
   SetPagamento: (pagamento) =>

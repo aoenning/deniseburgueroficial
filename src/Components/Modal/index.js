@@ -48,7 +48,7 @@ function Modal({ exibir, data, onClick, value, onChange }) {
   }
 
   function handleCloseModal(value) {
-    limparCliente();
+    // limparCliente();
     handleSetShow(value);
     handleNext();
     // alert("🟡 Atenção!Preencha os dados.");

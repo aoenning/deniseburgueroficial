@@ -53,8 +53,8 @@ export const Area = styled.div`
   flex-direction: row;
   margin-top: ${(props) => (props.marginTop ? props.marginTop : "15px")};
   background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : colors.cinza};
-  border-radius: 10px;
+    props.backgroundColor ? props.backgroundColor : colors.white};
+  /* border-radius: 10px; */
 `;
 
 export const AreaBotton = styled.div`

@@ -17,6 +17,15 @@ import CartCarrinho from "../../Components/CardCarrinho";
 import CardCarrinho from "../../Components/CardCarrinho";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Modal from "../../Components/Modal";
+import {
+  collection,
+  query,
+  where,
+  orderBy,
+  limit,
+  getDocs,
+} from "firebase/firestore";
+import { db } from "../../firebase";
 
 function Carrinho() {
   const [listCardapioAdicionais, setListCardapioAdicionais] = useState([]);
@@ -28,10 +37,15 @@ function Carrinho() {
     setShow,
     show,
     cliente,
+    setDadosCliente,
   } = useProdutoStore();
   const [selectedOption, setSelectedOption] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    buscaClientePorTelefone();
+  }, []);
 
   const handleSelectedScreen = (e) => {
     clearAdicionais();
@@ -50,6 +64,42 @@ function Carrinho() {
       setShow("X");
     }
   }
+
+  const buscaClientePorTelefone = async () => {
+    const telefone = localStorage.getItem("telefone");
+    // console.log("telefone", telefone);
+
+    const pedidosRef = collection(db, "pedidos");
+
+    const q = query(
+      pedidosRef,
+      where("cliente.telefone", "==", telefone),
+      orderBy("data", "desc"), // ou "criadoEm", se for o campo que você usa
+      limit(1)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if (!snapshot.empty) {
+      const pedido = snapshot.docs[0].data();
+
+      const dados = {
+        nome: pedido.cliente.nome,
+        telefone: pedido.cliente.telefone,
+        rua: pedido.cliente.rua,
+        numero: pedido.cliente.numero,
+        complemento: pedido.cliente.complemento,
+        bairro: pedido.cliente.bairro,
+        cidade: pedido.cliente.cidade,
+      };
+      // console.log("Cliente", pedido.cliente);
+      setDadosCliente(dados);
+
+      return pedido.cliente || null;
+    }
+
+    return null;
+  };
 
   return (
     <s.Container>

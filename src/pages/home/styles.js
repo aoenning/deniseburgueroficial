@@ -4,16 +4,16 @@ import { colors, fonts } from "../../Styles";
 // Estilos Globais
 export const Container = styled.div`
   width: 100%;
-  margin-top: 200px;
+  min-height: 100vh;
+  /* margin-top: 200px; */
   /* margin-bottom: 500px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* height: 1000px; */
-  /* overflow-y: "auto"; */
+
   outline: none;
-  background-color: ${colors.primary};
+  background-color: ${colors.white};
   /* min-height: 100vh; */
 `;
 
@@ -31,4 +31,9 @@ export const Title = styled.p`
   font-family: ${fonts.primary};
   font-size: 25px;
   /* margin-top: 15px; */
+`;
+
+export const BoxList = styled.div`
+  margin-top: 15px;
+  overflow-y: "auto";
 `;

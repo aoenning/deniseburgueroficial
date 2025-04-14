@@ -7,6 +7,7 @@ import { colors, fonts } from "../../Styles";
 const Card = styled.div`
   width: 100%;
   height: 170px;
+  /* margin-top: 200px; */
   /* padding-bottom: 10px; */
   border-bottom: 1px solid ${colors.header};
   cursor: pointer;

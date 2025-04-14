@@ -21,6 +21,7 @@ import RadioButton from "../../Components/RadioButton";
 import { db } from "../../firebase"; // ou o caminho relativo correto
 import { collection, addDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import RadioButtonEndereco from "./../../Components/RadioButtonEndereco";
 
 function ResumoPedido() {
   const [listCardapioAdicionais, setListCardapioAdicionais] = useState([]);
@@ -38,6 +39,11 @@ function ResumoPedido() {
     pedido,
     SetDadosPedido,
     setStatus,
+    setShow,
+    show,
+    setTipoEntrega,
+    tipoEntrega,
+    local,
   } = useProdutoStore();
   const navigate = useNavigate();
 
@@ -111,7 +117,7 @@ function ResumoPedido() {
         >
           <IoIosArrowBack color={colors.white} size={30} />
         </s.BoxIcon>
-        <s.Title color={colors.white}>Resumo carrinho</s.Title>
+        <s.TitleHeader color={colors.white}>Resumo carrinho</s.TitleHeader>
         <s.BoxIcon
           onClick={() => {
             {
@@ -125,44 +131,83 @@ function ResumoPedido() {
           <s.Description>Telefone: {cliente.telefone}</s.Description>
         </s.Content>
       )}
-      {cliente.nome && (
-        <s.Content border={"none"}>
-          <s.BoxTitle>
-            <s.Area>
-              <s.Title color={colors.brack}>Endereço para entrega</s.Title>
-            </s.Area>
-            <s.Description>Rua: {cliente.rua}</s.Description>
-            <s.Description>Numero: {cliente.numero}</s.Description>
-            <s.Description>Bairro: {cliente.bairro}</s.Description>
-            <s.Description>Complemento: {cliente.complemento}</s.Description>
-            <s.Description>Cidade: {cliente.cidade}</s.Description>
-          </s.BoxTitle>
-          <s.BoxButton>
-            <s.AddButton
-              width={"75px"}
-              height={"30px"}
-              // disabled={cart.length ? false : true}
-              justifyContent={"center"}
-              borderColor={""}
-              background={colors.cinza_forte}
-              color={colors.white}
-              onClick={() => {
-                {
-                }
-              }}
-            >
-              Alterar{" "}
-              {/* <span>
-              {valorTotalPedido.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
-            </span> */}
-            </s.AddButton>
-          </s.BoxButton>
-        </s.Content>
+
+      {show && (
+        <Modal
+          show={() => {}}
+          data={""}
+          onClick={(item) => {}}
+          onChange={(txt) => {}}
+        />
       )}
+
+      {/* <s.AreaPagamento> */}
       <RadioButton />
+      {/* </s.AreaPagamento> */}
+
+      <s.ContainerEndereco>
+        <s.OptionEndereco selected={tipoEntrega === "retirada"}>
+          <s.InputEndereco
+            type="radio"
+            name="entrega"
+            value="retirada"
+            checked={tipoEntrega === "retirada"}
+            onChange={(e) => setTipoEntrega(e.target.value)}
+          />
+          <s.Content border={"none"}>
+            <s.BoxTitle>
+              <s.Area>
+                <s.Title color={colors.brack}>Retirar no local</s.Title>
+              </s.Area>
+              <s.Description>Rua: {local.rua}</s.Description>
+              <s.Description>Numero: {local.numero}</s.Description>
+              <s.Description>Bairro: {local.bairro}</s.Description>
+              <s.Description>Complemento: {local.complemento}</s.Description>
+              <s.Description>Cidade: {cliente.cidade}</s.Description>
+            </s.BoxTitle>
+          </s.Content>
+        </s.OptionEndereco>
+
+        <s.OptionEndereco selected={tipoEntrega === "entrega"}>
+          <s.InputEndereco
+            type="radio"
+            name="entrega"
+            value="entrega"
+            checked={tipoEntrega === "entrega"}
+            onChange={(e) => setTipoEntrega(e.target.value)}
+          />
+
+          <s.Content border={"none"}>
+            <s.BoxTitle>
+              <s.Area>
+                <s.Title color={colors.brack}>Endereço para entrega</s.Title>
+              </s.Area>
+              <s.Description>Rua: {cliente.rua}</s.Description>
+              <s.Description>Numero: {cliente.numero}</s.Description>
+              <s.Description>Bairro: {cliente.bairro}</s.Description>
+              <s.Description>Complemento: {cliente.complemento}</s.Description>
+              <s.Description>Cidade: {cliente.cidade}</s.Description>
+            </s.BoxTitle>
+            <s.BoxButton>
+              <s.AddButton
+                width={"75px"}
+                height={"30px"}
+                // disabled={cart.length ? false : true}
+                justifyContent={"center"}
+                borderColor={""}
+                background={colors.cinza_forte}
+                color={colors.white}
+                onClick={() => {
+                  setShow("true");
+                }}
+              >
+                Alterar{" "}
+              </s.AddButton>
+            </s.BoxButton>
+          </s.Content>
+        </s.OptionEndereco>
+      </s.ContainerEndereco>
+
       <s.Footer>
         <s.AddButton
           disabled={pagamento ? false : true}

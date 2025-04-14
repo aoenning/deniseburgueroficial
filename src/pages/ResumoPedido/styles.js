@@ -111,6 +111,14 @@ export const BoxButton = styled.div`
 `;
 
 export const Title = styled.p`
+  font-size: 1rem;
+  /* margin-bottom: 16px; */
+  font-family: ${fonts.primary};
+  color: ${(props) => (props.color ? props.color : "auto")};
+  font-weight: bold;
+`;
+
+export const TitleHeader = styled.p`
   font-size: 1.25rem;
   /* margin-bottom: 16px; */
   font-family: ${fonts.primary};
@@ -119,7 +127,7 @@ export const Title = styled.p`
 `;
 
 export const Description = styled.p`
-  font-size: 1rem;
+  font-size: 0.8rem;
   /* margin-bottom: 16px; */
   font-family: ${fonts.primary};
   color: ${colors.brack};
@@ -194,4 +202,32 @@ export const RadioLabel = styled.label`
 export const RadioInput = styled.input`
   margin-right: 8px;
   accent-color: #e07a5f; // cor do radio selecionado
+`;
+
+export const ContainerEndereco = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+  margin-top: 15px;
+`;
+
+export const OptionEndereco = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  border: 2px solid ${({ selected }) => (selected ? "#222" : "#ccc")};
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: ${({ selected }) => (selected ? "#f5f5f5" : "#fff")};
+  transition: all 0.2s ease;
+`;
+
+export const InputEndereco = styled.input`
+  accent-color: #222;
+`;
+
+export const AreaPagamento = styled.input`
+  margin-bottom: 25px;
 `;

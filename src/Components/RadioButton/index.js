@@ -24,7 +24,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.0rem;
   margin-bottom: 16px;
   font-family: ${fonts.primary};
   color: ${colors.brack};
@@ -41,7 +41,7 @@ const RadioOption = styled.label`
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   cursor: pointer;
   font-family: ${fonts.primary};
   color: ${colors.brack};
@@ -65,7 +65,7 @@ export default function PaymentCard() {
   return (
     <Card>
       <Content>
-        <Title>Escolha a forma de pagamento:</Title>
+        <Title>Pagamento:</Title>
         {tipopagamento.map((pgto) => (
           <RadioGroup>
             <RadioOption>

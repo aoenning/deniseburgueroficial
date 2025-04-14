@@ -37,9 +37,11 @@ function Home() {
     <s.Container>
       <Header height={"150px"} img={img} />
       <s.Title>Cardápio Denise Burger</s.Title>
-      {listCardapioBurgers.map((burger) => (
-        <CustomCard burger={burger} />
-      ))}
+      <s.BoxList>
+        {listCardapioBurgers.map((burger) => (
+          <CustomCard burger={burger} />
+        ))}
+      </s.BoxList>
       <h1>Bebidas</h1>
       {listCardapioBebidas.map((bebidas) => (
         <CustomCardBebidas item={bebidas} />

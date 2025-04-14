@@ -14,15 +14,15 @@ const HeaderContainer = styled.header`
   /* margin-bottom: 20px; */
   text-align: center;
   font-size: 1.5rem;
-  position: fixed;
+  /* position: fixed; */
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  top: 0px;
+  /* top: 0px; */
   outline: none;
   /* z-index: 1000; */
-  z-index: auto;
+  /* z-index: auto; */
   /* border-bottom: 1px solid ${colors.header}; */
 `;
 
