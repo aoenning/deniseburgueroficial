@@ -117,7 +117,7 @@ function Pedidos() {
         SetDadosPedido(dados);
         setStatus(p.status); // ou dados.status
       } else {
-        console.log("Pedido não encontrado.");
+        // console.log("Pedido não encontrado.");
       }
     } catch (error) {
       console.error("Erro ao buscar pedido por ID:", error);

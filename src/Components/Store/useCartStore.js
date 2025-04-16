@@ -344,6 +344,14 @@ const useCartStore = create((set) => ({
       return { adicionais: dados };
     }),
 
+  atualizaAdicionalProduto: (dados) =>
+    set((state) => ({
+      produto: {
+        ...state.produto,
+        adicionais: state.adicionais,
+      },
+    })),
+
   addItemAdicionais: (item) =>
     set((state) => {
       const itemExists = state.adicionais.find((i) => i.id === item.id);
@@ -357,22 +365,25 @@ const useCartStore = create((set) => ({
         };
       }
 
+      // console.log("Passou aqui", itemExists.quantidade + 1);
+      // console.log("Passou por aqui item", item.quantidade + 1);
+
       if (itemExists) {
         return {
           adicionais: state.adicionais.map((i) =>
             i.id === item.id
               ? {
                   ...i,
-                  quantidade: i.quantidade + 1,
-                  valorTotal: (i.quantidade + 1) * i.preco,
+                  quantidade: itemExists.quantidade + 1,
+                  valorTotal: (itemExists.quantidade + 1) * item.preco,
                 }
               : i
           ),
 
-          produto: {
-            ...state.produto,
-            adicionais: state.adicionais,
-          },
+          // produto: {
+          //   ...state.produto,
+          //   adicionais: state.adicionais,
+          // },
         };
       }
 
@@ -392,6 +403,31 @@ const useCartStore = create((set) => ({
         },
       };
     }),
+
+  // addItemAdicionais: (item) =>
+  //   set((state) => {
+  //     const itemExists = state.adicionais.find((i) => i.id === item.id);
+
+  //     console.log(item.id);
+
+  //     if (itemExists) {
+  //       return {
+  //         cart: state.adicionais.map((i) =>
+  //           i.id === item.id
+  //             ? {
+  //                 ...i,
+  //                 quantidade: i.quantidade + 1,
+  //                 valorTotal: item.precomemory + i.valorTotal,
+  //               }
+  //             : i
+  //         ),
+  //       };
+  //     }
+
+  //     // return {
+  //     //   valorTotalPedido: total,
+  //     // };
+  //   }),
 
   removeItemAdicionais: (item) =>
     set((state) => {

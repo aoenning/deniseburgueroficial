@@ -35,6 +35,7 @@ function Detalhe() {
     totalCart,
     tipoEntrega,
     setAdicional,
+    atualizaAdicionalProduto,
   } = useProdutoStore();
   const [selectedOption, setSelectedOption] = useState(null);
   const [quantity, setQuantity] = useState(0);
@@ -51,6 +52,7 @@ function Detalhe() {
 
   function haldleAddAdicionais(item) {
     addItemAdicionais(item);
+    atualizaAdicionalProduto();
     totalProduto();
   }
 
@@ -60,7 +62,7 @@ function Detalhe() {
   }
 
   function handleNext() {
-    console.log(produto);
+    // console.log(produto);
     addItemCart(produto);
     totalCart();
     navigate("/Carrinho");
@@ -91,7 +93,7 @@ function Detalhe() {
           return dados;
         });
 
-      console.log(cardapio);
+      // console.log(cardapio);
       setAdicional(cardapio);
       // setListCardapioAdicionais(lista);
     });

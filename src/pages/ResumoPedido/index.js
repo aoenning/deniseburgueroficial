@@ -74,9 +74,9 @@ function ResumoPedido() {
   const salvarCliente = async () => {
     try {
       await addDoc(collection(db, "clientes"), cliente);
-      console.log("Cliente salvo com sucesso!");
+      // console.log("Cliente salvo com sucesso!");
     } catch (error) {
-      console.error("Erro ao salvar cliente:", error);
+      // console.error("Erro ao salvar cliente:", error);
     }
   };
 
@@ -94,7 +94,7 @@ function ResumoPedido() {
 
     try {
       const docRef = await addDoc(collection(db, "pedidos"), pedido);
-      console.log("🙋 Pedido salvo com ID:", docRef.id);
+      // console.log("🙋 Pedido salvo com ID:", docRef.id);
       localStorage.setItem("nome", cliente.nome);
       localStorage.setItem("telefone", cliente.telefone);
       localStorage.setItem("id_pedido", docRef.id);
