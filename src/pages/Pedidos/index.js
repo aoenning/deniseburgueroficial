@@ -188,7 +188,7 @@ function Pedidos() {
           </s.Step>
         ))}
       </s.Steps>
-      {/* )} */}
+      <s.Steps></s.Steps>
 
       <Footer />
     </s.Container>
