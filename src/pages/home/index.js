@@ -7,7 +7,14 @@ import Header from "../../Components/CustomHeader";
 import Footer from "../../Components/SidebarButton";
 import img from "../../assets/denise_burguer.jpg";
 import useProdutoStore from "../../Components/Store/useCartStore";
-import { collection, onSnapshot, doc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  doc,
+  deleteDoc,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 import * as s from "./styles";
 
@@ -38,7 +45,17 @@ function Home() {
   useEffect(() => {}, []);
 
   function getProdutos() {
-    const unsubscribe = onSnapshot(collection(db, "produtos"), (snapshot) => {
+    const q = query(collection(db, "produtos"), orderBy("preco"));
+
+    // const unsubscribe = onSnapshot(collection(db, "produtos"), (snapshot) => {
+    //   const lista = snapshot.docs.map((doc) => ({
+    //     id: doc.id,
+    //     ...doc.data(),
+    //   }));
+    //   setListCardapioBurgers(lista);
+    // });
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const lista = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),

@@ -7,7 +7,7 @@ import Header from "../../Components/CustomHeader";
 import Footer from "../../Components/SidebarButton";
 import img from "../../assets/denise_burguer.jpg";
 import useProdutoStore from "../../Components/Store/useCartStore";
-import { Clock, ChefHat, Truck, CheckCircle } from "lucide-react";
+import { Clock, ChefHat, Truck, CheckCircle, BlocksIcon } from "lucide-react";
 import * as s from "./styles";
 import { colors } from "../../Styles";
 import {
@@ -54,6 +54,7 @@ function Pedidos() {
     { label: "preparacao", icon: <ChefHat size={24} color="green" /> },
     { label: "rota", icon: <Truck size={24} /> },
     { label: "entregue", icon: <CheckCircle size={24} /> },
+    { label: "cancelado", icon: <BlocksIcon size={24} /> },
   ];
 
   const currentStepIndex = steps.findIndex((step) => step.label === status);
