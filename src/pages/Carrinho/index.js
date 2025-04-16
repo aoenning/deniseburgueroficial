@@ -129,14 +129,14 @@ function Carrinho() {
       <s.AddButton
         marginButton={"25px"}
         justifyContent={"center"}
-        borderColor={colors.white}
+        borderColor={colors.header}
         background={colors.white}
         color={colors.laraja_forte}
         onClick={() => {
           handleSelectedScreen();
         }}
       >
-        Adicionar mais itens
+        Adicionar mais produtos
       </s.AddButton>
       {show && (
         <Modal

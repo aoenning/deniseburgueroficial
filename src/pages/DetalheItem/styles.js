@@ -106,9 +106,9 @@ export const Option = styled.div`
   border-bottom: 1px solid ${colors.cinza};
   /* border-radius: 10px; */
   cursor: pointer;
-  margin-bottom: 30px;
-  height: 60px;
-  margin-left: 15px;
+  /* margin-bottom: 30px; */
+  /* height: 60px; */
+  margin-left: 10px;
 `;
 
 export const OptionInfo = styled.div`
@@ -128,7 +128,7 @@ export const OptionDescription = styled.p`
   font-weight: bold;
   text-align: start;
   color: ${colors.brack};
-  font-family: ${fonts.brack};
+  font-family: ${fonts.primary};
 `;
 
 export const OptionPrice = styled.p`
@@ -206,7 +206,8 @@ export const TextArea = styled.textarea`
   font-size: 14px;
   resize: none;
   font-family: ${fonts.primary};
-  margin-bottom: 60px;
+  margin-bottom: 65px;
+  margin-top: 15px;
 `;
 
 export const RadioLabel = styled.label`

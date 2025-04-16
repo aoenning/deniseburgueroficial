@@ -6,7 +6,7 @@ import { colors, fonts } from "../../Styles";
 
 const Card = styled.div`
   width: 100%;
-  height: 170px;
+  max-height: 200px;
   /* margin-top: 200px; */
   /* padding-bottom: 10px; */
   border-bottom: 1px solid ${colors.header};
@@ -38,34 +38,39 @@ const CardPrice = styled.p`
   font-family: ${fonts.segudary};
   font-size: 15px;
   font-weight: bold;
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 const CardDetails = styled.p`
   font-size: 0.8rem;
   color: #555;
   text-align: start;
-  font-family: ${fonts.primary};
+  font-family: ${fonts.segudary};
   font-size: 13px;
 `;
 
 const CardBoxImage = styled.div`
-  /* width: 37%; */
-
-  /* justify-content: center; */
+  width: 20%;
+  /* width: 80px; */
+  max-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   /* background-color: ${colors.cinza}; */
 `;
 
 const CardImage = styled.img`
-  width: 90%;
-  height: 150px;
-  border-radius: 50%;
+  width: 100%;
+  /* height: 85px; */
+  max-height: 90px;
+  border-radius: 10%;
   background-color: ${colors.primary};
 `;
 
 const CardBoxDetail = styled.div`
-  width: 63%;
+  width: 80%;
+  margin: 0px 5px 10px 5px;
 `;
 
 const CardBoxPrice = styled.div`
@@ -76,9 +81,9 @@ const CardBoxPrice = styled.div`
 const CardBox = styled.div`
   display: flex;
   flex-direction: row;
-  width: 99%;
+  width: 100%;
   /* height: 100%; */
-  /* align-items: center; */
+  align-items: center;
   padding: 10px;
 `;
 

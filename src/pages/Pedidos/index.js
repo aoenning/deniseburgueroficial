@@ -21,6 +21,7 @@ import {
 import { db } from "../../firebase";
 import { FaSync } from "react-icons/fa";
 import { loginUnico } from "./../../auth";
+import moment from "moment/moment";
 
 function Pedidos() {
   const {
@@ -31,6 +32,7 @@ function Pedidos() {
     status,
     SetDadosPedido,
     setStatus,
+    tipoEntrega,
   } = useProdutoStore();
 
   const [dadosPedido, setDadosPedido] = useState([]);
@@ -108,7 +110,7 @@ function Pedidos() {
           status: p.status,
           pagamento: p.pagamento,
           total: p.total,
-          data: p.data,
+          data: moment(p.data).format("DD/MM/YYYY"),
         };
 
         SetDadosPedido(dados);
@@ -127,41 +129,54 @@ function Pedidos() {
         <s.Title color={colors.white}>Pedido</s.Title>
       </s.Header>
 
-      <s.PedidoInfo>
-        <s.Title>Acompanhamento do Pedido</s.Title>
-        <s.InfoRow>
-          <strong>Cliente:</strong> {pedido.cliente.nome}
-        </s.InfoRow>
-        <s.InfoRow>
-          <strong>Telefone:</strong> {pedido.cliente.telefone}
-        </s.InfoRow>
-        <s.InfoRow>{/* <strong>Itens:</strong> */}</s.InfoRow>
-        <s.BoxItem>
-          <ul>
-            {pedido.itens.map((item, index) => (
-              <s.BoxLi key={index}>
-                {item.nome}
-                {/* {item.adicionais?.length > 0 &&
-                `(+ ${item.adicionais.join(", ")})`} */}
-              </s.BoxLi>
-            ))}
-          </ul>
-        </s.BoxItem>
-        <s.InfoRow>
-          <strong>Total: </strong>
-          {pedido.total.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })}
-        </s.InfoRow>
-        <s.InfoRow>
-          <strong>Data:</strong> {pedido.data}
-        </s.InfoRow>
-        <s.InfoRow>
-          <strong>Status atual:</strong> {status}
-        </s.InfoRow>
-      </s.PedidoInfo>
-
+      {pedido.cliente.nome && (
+        <s.PedidoInfo>
+          <s.Title>Acompanhe seu pedido!!!</s.Title>
+          <s.InfoRow>
+            <strong>Cliente:</strong> {pedido.cliente.nome}
+          </s.InfoRow>
+          <s.InfoRow>
+            <strong>Telefone:</strong> {pedido.cliente.telefone}
+          </s.InfoRow>
+          <s.InfoRow>{/* <strong>Itens:</strong> */}</s.InfoRow>
+          <s.BoxItem>
+            <ul>
+              {pedido.itens?.map((item, index) => (
+                <s.BoxLi key={index}>
+                  {item.nome}
+                  {item.adicionais && item.adicionais.length > 0 && (
+                    <ul>
+                      {item.adicionais
+                        .filter((i) => i.quantidade > 0)
+                        .map((i, index) => (
+                          <div>
+                            <s.BoxLiAdicional key={index}>
+                              {i.quantidade} {i.nome} (R$ {i.preco.toFixed(2)})
+                            </s.BoxLiAdicional>
+                          </div>
+                        ))}
+                    </ul>
+                  )}
+                </s.BoxLi>
+              ))}
+            </ul>
+          </s.BoxItem>
+          <s.InfoRow>
+            <strong>Total: </strong>
+            {pedido.total.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </s.InfoRow>
+          <s.InfoRow>
+            <strong>Data:</strong> {pedido.data}
+          </s.InfoRow>
+          <s.InfoRow>
+            <strong>Status atual:</strong> {status}
+          </s.InfoRow>
+        </s.PedidoInfo>
+      )}
+      {/* {pedido.cliente.nome && ( */}
       <s.Steps>
         {steps.map((step, index) => (
           <s.Step key={index}>
@@ -172,6 +187,8 @@ function Pedidos() {
           </s.Step>
         ))}
       </s.Steps>
+      {/* )} */}
+
       <Footer />
     </s.Container>
   );

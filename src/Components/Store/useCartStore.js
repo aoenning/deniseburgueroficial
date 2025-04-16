@@ -25,6 +25,10 @@ const useCartStore = create((set) => ({
   valorTotalItens: 0.0,
   valorTotalPedido: 0.0,
   status: "Entregue",
+  troco: {
+    valor: 0.0,
+    status: "nao",
+  },
   pedido: {
     cliente: {
       nome: "",
@@ -43,6 +47,7 @@ const useCartStore = create((set) => ({
   },
   cart: [],
   show: "",
+  showModalTroco: "",
   message: "",
   openMessagem: false,
   tipoEntrega: "entrega",
@@ -50,87 +55,87 @@ const useCartStore = create((set) => ({
   tipopagamento: ["pix", "cartão", "dinheiro"],
   pagamento: "",
   adicionais: [
-    {
-      id: 1,
-      img: "",
-      nome: "HAMBÚRGERS",
-      detalhe: "",
-      quantidade: 0,
-      preco: 7.0,
-      valorTotal: 0.0,
-    },
-    {
-      id: 2,
-      img: "",
-      nome: "BACON",
-      detalhe: "",
-      quantidade: 0,
-      preco: 3.0,
-      valorTotal: 0.0,
-    },
-    {
-      id: 3,
-      img: "",
-      nome: "CHEDDAR",
-      detalhe: "",
-      quantidade: 0,
-      preco: 3.0,
-      valorTotal: "",
-    },
-    {
-      id: 4,
-      img: "",
-      nome: "MUSSARELA",
-      detalhe: "",
-      quantidade: 0,
-      preco: 2.0,
-      valorTotal: 0.0,
-    },
-    {
-      id: 5,
-      img: "",
-      nome: "ALFACE",
-      detalhe: "",
-      quantidade: 0,
-      preco: 0.0,
-      valorTotal: "",
-    },
-    {
-      id: 6,
-      img: "",
-      nome: "TOMATE",
-      detalhe: "",
-      quantidade: 0,
-      preco: 0.0,
-      valorTotal: 0.0,
-    },
-    {
-      id: 7,
-      img: "",
-      nome: "CEBOLA",
-      detalhe: "",
-      quantidade: 0,
-      preco: 0.0,
-      valorTotal: 0.0,
-    },
-    {
-      id: 8,
-      img: "",
-      nome: "OVO",
-      detalhe: "",
-      quantidade: 0,
-      preco: 3.0,
-      valorTotal: 0.0,
-    },
-    {
-      id: 9,
-      img: "",
-      nome: "BANANA",
-      detalhe: "",
-      quantidade: 0,
-      preco: 3.0,
-      valorTotal: 0.0,
-    },
+    // {
+    //   id: 1,
+    //   img: "",
+    //   nome: "HAMBÚRGERS",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 7.0,
+    //   valorTotal: 0.0,
+    // },
+    // {
+    //   id: 2,
+    //   img: "",
+    //   nome: "BACON",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 3.0,
+    //   valorTotal: 0.0,
+    // },
+    // {
+    //   id: 3,
+    //   img: "",
+    //   nome: "CHEDDAR",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 3.0,
+    //   valorTotal: "",
+    // },
+    // {
+    //   id: 4,
+    //   img: "",
+    //   nome: "MUSSARELA",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 2.0,
+    //   valorTotal: 0.0,
+    // },
+    // {
+    //   id: 5,
+    //   img: "",
+    //   nome: "ALFACE",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 0.0,
+    //   valorTotal: "",
+    // },
+    // {
+    //   id: 6,
+    //   img: "",
+    //   nome: "TOMATE",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 0.0,
+    //   valorTotal: 0.0,
+    // },
+    // {
+    //   id: 7,
+    //   img: "",
+    //   nome: "CEBOLA",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 0.0,
+    //   valorTotal: 0.0,
+    // },
+    // {
+    //   id: 8,
+    //   img: "",
+    //   nome: "OVO",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 3.0,
+    //   valorTotal: 0.0,
+    // },
+    // {
+    //   id: 9,
+    //   img: "",
+    //   nome: "BANANA",
+    //   detalhe: "",
+    //   quantidade: 0,
+    //   preco: 3.0,
+    //   valorTotal: 0.0,
+    // },
   ],
   produto: {
     id: "",
@@ -168,6 +173,11 @@ const useCartStore = create((set) => ({
   atualizarCliente: (campo, valor) =>
     set((state) => ({
       cliente: { ...state.cliente, [campo]: valor },
+    })),
+
+  atualizaTroco: (campo, valor) =>
+    set((state) => ({
+      troco: { ...state.troco, [campo]: valor },
     })),
 
   setDadosCliente: (dados) =>
@@ -222,6 +232,7 @@ const useCartStore = create((set) => ({
     set({
       produto: {
         id: novoProduto.id,
+        index: "",
         nome: novoProduto.nome,
         detalhe: novoProduto.detalhe,
         img: novoProduto.img,
@@ -247,9 +258,19 @@ const useCartStore = create((set) => ({
       status: value,
     }),
 
+  setTroco: (value) =>
+    set({
+      status: value,
+    }),
+
   setShow: (value) =>
     set({
       show: value,
+    }),
+
+  setShowTroco: (value) =>
+    set({
+      showModalTroco: value,
     }),
 
   setMessage: (value) =>
@@ -302,7 +323,8 @@ const useCartStore = create((set) => ({
       });
 
       total = total + state.produto.preco;
-      indexCart = indexCart + state.cart.length;
+      indexCart = state.cart.length + 1;
+      console.log(state.cart.length);
 
       // state.produto.valorTotal = total;
 
@@ -317,9 +339,23 @@ const useCartStore = create((set) => ({
       };
     }),
 
+  setAdicional: (dados) =>
+    set((state) => {
+      return { adicionais: dados };
+    }),
+
   addItemAdicionais: (item) =>
     set((state) => {
       const itemExists = state.adicionais.find((i) => i.id === item.id);
+
+      if (itemExists.preco < 1 && itemExists.quantidade > 0) {
+        return {
+          produto: {
+            ...state.produto,
+            adicionais: state.adicionais,
+          },
+        };
+      }
 
       if (itemExists) {
         return {
@@ -394,6 +430,11 @@ const useCartStore = create((set) => ({
       cart: state.adicionais.map((item) =>
         item.id === id ? { ...item, quantidade } : item
       ),
+    })),
+
+  setAdicional: (dados) =>
+    set((state) => ({
+      adicionais: dados,
     })),
 
   clearAdicionais: () =>
@@ -489,6 +530,7 @@ const useCartStore = create((set) => ({
     set((state) => {
       const itemExists = state.cart.find((i) => i.id === item.id);
       let total = 0.0;
+      // console.log(item);
 
       // if (itemExists) {
       // return {
@@ -505,7 +547,12 @@ const useCartStore = create((set) => ({
 
       // }
 
-      return { cart: [...state.cart, { ...item, quantidade: 1 }] };
+      return {
+        cart: [
+          ...state.cart,
+          { ...item, quantidade: 1, index: state.cart.length + 1 },
+        ],
+      };
     }),
 
   removeQtdeItemCart: (item) =>
@@ -543,7 +590,8 @@ const useCartStore = create((set) => ({
       ),
     })),
 
-  clearCart: () => set({ cart: [], valorTotalPedido: 0.0 }),
+  clearCart: () =>
+    set({ cart: [], valorTotalPedido: 0.0, troco: { status: "", valor: "" } }),
 
   totalCart: () =>
     set((state) => {
@@ -583,6 +631,8 @@ const useCartStore = create((set) => ({
   AddItemPedido: (item) =>
     set((state) => {
       const itemExists = state.cart.find((i) => i.index === item.index);
+
+      console.log(item.index);
 
       if (itemExists) {
         return {

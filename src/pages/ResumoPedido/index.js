@@ -17,14 +17,25 @@ import CartCarrinho from "../../Components/CardCarrinho";
 import CardCarrinho from "../../Components/CardCarrinho";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Modal from "../../Components/Modal";
+import ModalTroco from "../../Components/ModalTroco";
 import RadioButton from "../../Components/RadioButton";
 import { db } from "../../firebase"; // ou o caminho relativo correto
 import { collection, addDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-import RadioButtonEndereco from "./../../Components/RadioButtonEndereco";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import { TransitionProps } from "@mui/material/transitions";
 
 function ResumoPedido() {
   const [listCardapioAdicionais, setListCardapioAdicionais] = useState([]);
+  const [open, setOpen] = useState(false);
+
   const {
     cliente,
     tipopagamento,
@@ -44,8 +55,17 @@ function ResumoPedido() {
     setTipoEntrega,
     tipoEntrega,
     local,
+    showModalTroco,
+    setShowTroco,
+    troco,
   } = useProdutoStore();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pagamento === "dinheiro") {
+      setShowTroco("true");
+    }
+  }, [pagamento]);
 
   const handleSelectedScreen = (e) => {
     navigate("/Carrinho");
@@ -66,6 +86,8 @@ function ResumoPedido() {
       itens: cart,
       status: "pendente",
       pagamento: pagamento,
+      tipoEntrega: tipoEntrega,
+      troco: troco,
       total: valorTotalPedido,
       data: new Date().toISOString(),
     };
@@ -84,7 +106,7 @@ function ResumoPedido() {
       limparProduto();
       clearAdicionais();
       clearCart();
-      navigate("/Pedidos");
+      setOpen(true);
     } catch (e) {
       console.error("Erro ao salvar pedido:", e);
     }
@@ -103,9 +125,14 @@ function ResumoPedido() {
     //     console.error("Erro ao autenticar:", error);
     //   });
 
-    salvarCliente();
+    // salvarCliente();
     salvarPedidos();
   };
+
+  function handleClose() {
+    setOpen(false);
+    navigate("/Pedidos");
+  }
 
   return (
     <s.Container>
@@ -134,6 +161,15 @@ function ResumoPedido() {
 
       {show && (
         <Modal
+          show={() => {}}
+          data={""}
+          onClick={(item) => {}}
+          onChange={(txt) => {}}
+        />
+      )}
+
+      {showModalTroco && (
+        <ModalTroco
           show={() => {}}
           data={""}
           onClick={(item) => {}}
@@ -207,6 +243,24 @@ function ResumoPedido() {
           </s.Content>
         </s.OptionEndereco>
       </s.ContainerEndereco>
+
+      <Dialog open={open} keepMounted onClose={handleClose} aria-describedby="">
+        <DialogTitle color="red">{"Parabéns!!"} 😄 </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="">
+            {"Pedido 🍔 realizado com sucesso!!"}🎉😄
+          </DialogContentText>
+          <DialogContentText id="">
+            {"Denise Burguer agradece pela preferência!! "}
+          </DialogContentText>
+          <DialogContentText id="">
+            {"Acompanhe seu pedido na tela de pedidos."} 🛵💨
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Fechar</Button>
+        </DialogActions>
+      </Dialog>
 
       <s.Footer>
         <s.AddButton

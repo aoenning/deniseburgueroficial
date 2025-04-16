@@ -13,6 +13,8 @@ import { FaPlusCircle } from "react-icons/fa";
 import { FaWindowMinimize } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
 import { colors } from "../../Styles";
+import { collection, onSnapshot, doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function Detalhe() {
   const [listCardapioAdicionais, setListCardapioAdicionais] = useState([]);
@@ -31,14 +33,15 @@ function Detalhe() {
     atualizarProdutoAdicionais,
     addItemCart,
     totalCart,
+    tipoEntrega,
+    setAdicional,
   } = useProdutoStore();
   const [selectedOption, setSelectedOption] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // let cardapioAdicionais = adicionais();
-    // setListCardapioAdicionais(cardapioAdicionais);
+    getProdutos();
   }, []);
 
   function backScreen() {
@@ -57,9 +60,43 @@ function Detalhe() {
   }
 
   function handleNext() {
+    console.log(produto);
     addItemCart(produto);
     totalCart();
     navigate("/Carrinho");
+  }
+
+  function getProdutos() {
+    const unsubscribe = onSnapshot(collection(db, "produtos"), (snapshot) => {
+      const lista = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      const cardapio = lista
+        .filter((i) => i.categoria !== "Tradicional")
+        .map((i) => {
+          const dados = {
+            id: i.id,
+            disponivel: i.disponivel,
+            categoria: i.categoria,
+            img: i.img,
+            nome: i.nome,
+            detalhe: i.detalhe,
+            quantidade: 0,
+            preco: i.preco,
+            valorTotal: 0.0,
+          };
+
+          return dados;
+        });
+
+      console.log(cardapio);
+      setAdicional(cardapio);
+      // setListCardapioAdicionais(lista);
+    });
+
+    return () => unsubscribe();
   }
 
   return (
@@ -104,37 +141,110 @@ function Detalhe() {
           </s.RadioLabel>
         ))}
         <s.BoxItem>
-          <s.Title>ADICIONAIS</s.Title>
+          <s.Title>Adicionais</s.Title>
         </s.BoxItem>
-        {adicionais.map((item) => (
-          <s.Option
-            key={item.id}
-            onClick={() => setSelectedOption(item)}
-            selected={selectedOption?.id === item.id}
-          >
-            <s.OptionInfo>
-              <s.OptionName>{item.nome}</s.OptionName>
-              <s.OptionDescription>{item.detalhe}</s.OptionDescription>
-              <s.OptionPrice>
-                {item.preco.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </s.OptionPrice>
-              <s.OptionPrice></s.OptionPrice>
-            </s.OptionInfo>
-            <s.QuantityContainer>
-              <s.QuantityButton onClick={() => haldleRemovedicionais(item)}>
-                <FaMinus size={25} color="RED" />
-              </s.QuantityButton>
-              <s.Quantity>{item.quantidade}</s.Quantity>
+        {adicionais
+          .filter((burger) => burger.disponivel)
+          .filter((burger) => burger.categoria === "Adicional")
+          .map((item) => (
+            <s.Option
+              key={item.id}
+              onClick={() => setSelectedOption(item)}
+              selected={selectedOption?.id === item.id}
+            >
+              <s.OptionInfo>
+                <s.OptionName>{item.nome}</s.OptionName>
+                <s.OptionDescription>{item.detalhe}</s.OptionDescription>
+                <s.OptionPrice>
+                  {item.preco.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </s.OptionPrice>
+                <s.OptionPrice></s.OptionPrice>
+              </s.OptionInfo>
+              <s.QuantityContainer>
+                <s.QuantityButton onClick={() => haldleRemovedicionais(item)}>
+                  <FaMinus size={25} color="RED" />
+                </s.QuantityButton>
+                <s.Quantity>{item.quantidade}</s.Quantity>
 
-              <s.QuantityButton onClick={() => haldleAddAdicionais(item)}>
-                <FaPlus size={25} color={colors.green} />
-              </s.QuantityButton>
-            </s.QuantityContainer>
-          </s.Option>
-        ))}
+                <s.QuantityButton onClick={() => haldleAddAdicionais(item)}>
+                  <FaPlus size={25} color={colors.green} />
+                </s.QuantityButton>
+              </s.QuantityContainer>
+            </s.Option>
+          ))}
+        <s.BoxItem>
+          <s.Title>Molho</s.Title>
+        </s.BoxItem>
+        {adicionais
+          .filter((burger) => burger.disponivel)
+          .filter((burger) => burger.categoria === "Molho")
+          .map((item) => (
+            <s.Option
+              key={item.id}
+              onClick={() => setSelectedOption(item)}
+              selected={selectedOption?.id === item.id}
+            >
+              <s.OptionInfo>
+                <s.OptionName>{item.nome}</s.OptionName>
+                <s.OptionDescription>{item.detalhe}</s.OptionDescription>
+                <s.OptionPrice>
+                  {item.preco.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </s.OptionPrice>
+                <s.OptionPrice></s.OptionPrice>
+              </s.OptionInfo>
+              <s.QuantityContainer>
+                <s.QuantityButton onClick={() => haldleRemovedicionais(item)}>
+                  <FaMinus size={25} color="RED" />
+                </s.QuantityButton>
+                <s.Quantity>{item.quantidade}</s.Quantity>
+
+                <s.QuantityButton onClick={() => haldleAddAdicionais(item)}>
+                  <FaPlus size={25} color={colors.green} />
+                </s.QuantityButton>
+              </s.QuantityContainer>
+            </s.Option>
+          ))}
+        <s.BoxItem>
+          <s.Title>Bebidas</s.Title>
+        </s.BoxItem>
+        {adicionais
+          .filter((burger) => burger.disponivel)
+          .filter((burger) => burger.categoria === "Bebida")
+          .map((item) => (
+            <s.Option
+              key={item.id}
+              onClick={() => setSelectedOption(item)}
+              selected={selectedOption?.id === item.id}
+            >
+              <s.OptionInfo>
+                <s.OptionName>{item.nome}</s.OptionName>
+                <s.OptionDescription>{item.detalhe}</s.OptionDescription>
+                <s.OptionPrice>
+                  {item.preco.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </s.OptionPrice>
+                <s.OptionPrice></s.OptionPrice>
+              </s.OptionInfo>
+              <s.QuantityContainer>
+                <s.QuantityButton onClick={() => haldleRemovedicionais(item)}>
+                  <FaMinus size={25} color="RED" />
+                </s.QuantityButton>
+                <s.Quantity>{item.quantidade}</s.Quantity>
+
+                <s.QuantityButton onClick={() => haldleAddAdicionais(item)}>
+                  <FaPlus size={25} color={colors.green} />
+                </s.QuantityButton>
+              </s.QuantityContainer>
+            </s.Option>
+          ))}
         <s.OptionDescription>Observações:</s.OptionDescription>
         <s.TextArea
           placeholder="Ex: Hamburguer bem passado..."

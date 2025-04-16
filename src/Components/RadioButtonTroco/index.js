@@ -7,23 +7,27 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 10px;
 `;
 
 const Option = styled.label`
-  display: flex;
+  /* display: flex; */
+  /* justify-content: start; */
   align-items: center;
   gap: 0.6rem;
-  padding: 0.8rem 1rem;
+  padding: 0.3rem;
   border: 2px solid ${({ selected }) => (selected ? "#222" : "#ccc")};
   border-radius: 10px;
   cursor: pointer;
   background-color: ${({ selected }) => (selected ? "#f5f5f5" : "#fff")};
-
   transition: all 0.2s ease;
+  width: 30%;
+  
 `;
 
 const Input = styled.input`
   accent-color: #222;
+  margin: 0px 5px 0px 0px;
 `;
 
 export default function RadioButtonEndereco({
@@ -31,29 +35,43 @@ export default function RadioButtonEndereco({
   onChange,
   enderecoCliente,
 }) {
+  const {
+    setShow,
+    atualizarCliente,
+    cliente,
+    limparCliente,
+    message,
+    setMessage,
+    setOpenMessage,
+    openMessage,
+    showModalTroco,
+    setShowTroco,
+    atualizaTroco,
+    troco,
+  } = useProdutoStore();
+
   return (
     <Container>
-      <Option selected={valor === "retirada"}>
+      <Option selected={troco.status === "nao"}>
         <Input
           type="radio"
-          name="entrega"
-          value="retirada"
-          checked={valor === "retirada"}
-          onChange={(e) => onChange(e.target.value)}
+          name="nao"
+          value="nao"
+          checked={troco.status === "nao"}
+          onChange={(e) => atualizaTroco("status", e.target.value)}
         />
-        Retirar no local
+        Não
       </Option>
 
-      <Option selected={valor === "entrega"}>
+      <Option selected={troco.status === "sim"}>
         <Input
           type="radio"
-          name="entrega"
-          value="entrega"
-          checked={valor === "entrega"}
-          onChange={(e) => onChange(e.target.value)}
+          name="sim"
+          value="sim"
+          checked={troco.status === "sim"}
+          onChange={(e) => atualizaTroco("status", e.target.value)}
         />
-        
-        Entregar no endereço: <strong>{enderecoCliente.rua}</strong>
+        Sim
       </Option>
     </Container>
   );

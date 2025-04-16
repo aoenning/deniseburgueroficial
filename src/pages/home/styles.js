@@ -10,7 +10,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 
   outline: none;
   background-color: ${colors.white};
@@ -18,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export const MainContainer = styled.div`
-  padding-top: 60px; /* Espaço para não ficar atrás do Header */
+  padding-top: 60px;
   /* padding-bottom: 60px; */
   /* min-height: 100vh; */
   display: flex;
@@ -30,10 +30,14 @@ export const MainContainer = styled.div`
 export const Title = styled.p`
   font-family: ${fonts.primary};
   font-size: 25px;
-  /* margin-top: 15px; */
+  margin-top: 15px;
 `;
 
 export const BoxList = styled.div`
   margin-top: 15px;
   overflow-y: "auto";
+`;
+
+export const Area = styled.div`
+  margin-top: 15px;
 `;

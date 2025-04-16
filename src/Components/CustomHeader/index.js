@@ -12,6 +12,7 @@ const HeaderContainer = styled.header`
   color: white;
   /* padding: 10px; */
   /* margin-bottom: 20px; */
+  background-image: url("https://st4.depositphotos.com/1020618/23910/i/600/depositphotos_239107218-stock-photo-tasty-burger-with-french-fries.jpg");
   text-align: center;
   font-size: 1.5rem;
   /* position: fixed; */

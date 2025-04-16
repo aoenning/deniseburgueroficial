@@ -76,10 +76,10 @@ export default function Footer() {
         <FaList size={25} />
         Pedidos
       </NavItem>
-      <NavItem to="/Promos">
+      {/* <NavItem to="/Promos">
         <FaStore size={25} />
         Promos
-      </NavItem>
+      </NavItem> */}
       <NavItem to="/Carrinho">
         {/* <Box> */}
         <Title>{cart.length}</Title>

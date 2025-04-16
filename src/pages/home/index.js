@@ -7,6 +7,8 @@ import Header from "../../Components/CustomHeader";
 import Footer from "../../Components/SidebarButton";
 import img from "../../assets/denise_burguer.jpg";
 import useProdutoStore from "../../Components/Store/useCartStore";
+import { collection, onSnapshot, doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 import * as s from "./styles";
 
 function Home() {
@@ -15,8 +17,8 @@ function Home() {
   const { SetDadosLocalStore, DadoslocalStorage } = useProdutoStore();
 
   useEffect(() => {
-    let cardapioBurgers = burgers();
-    setListCardapioBurgers(cardapioBurgers);
+    getProdutos();
+    // setListCardapioBurgers(cardapioBurgers);
 
     let cardapioBebidas = bebidas();
     setListCardapioBebidas(cardapioBebidas);
@@ -33,19 +35,38 @@ function Home() {
       SetDadosLocalStore(dados);
     }
   }, []);
+  useEffect(() => {}, []);
+
+  function getProdutos() {
+    const unsubscribe = onSnapshot(collection(db, "produtos"), (snapshot) => {
+      const lista = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setListCardapioBurgers(lista);
+    });
+
+    return () => unsubscribe();
+  }
+
   return (
     <s.Container>
       <Header height={"150px"} img={img} />
+      {/* <s.Area> */}
       <s.Title>Cardápio Denise Burger</s.Title>
+      {/* </s.Area> */}
       <s.BoxList>
-        {listCardapioBurgers.map((burger) => (
-          <CustomCard burger={burger} />
-        ))}
+        {listCardapioBurgers
+          .filter((burger) => burger.disponivel)
+          .filter((burger) => burger.categoria === "Tradicional")
+          .map((burger) => (
+            <CustomCard key={burger.id} burger={burger} />
+          ))}
       </s.BoxList>
-      <h1>Bebidas</h1>
+      {/* <h1>Bebidas</h1>
       {listCardapioBebidas.map((bebidas) => (
         <CustomCardBebidas item={bebidas} />
-      ))}
+      ))} */}
       <s.MainContainer></s.MainContainer>
       <Footer />
     </s.Container>

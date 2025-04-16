@@ -44,10 +44,10 @@ export const BoxIcon = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   text-align: center;
   /* margin-bottom: 1.5rem; */
-  color: ${(props) => (props.color ? props.color : colors.header)};
+  color: ${(props) => (props.color ? props.color : colors.brack)};
   font-family: ${fonts.primary};
 `;
 
@@ -60,6 +60,7 @@ export const PedidoInfo = styled.div`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
   margin: 15px;
   padding: 15px;
+  overflow: auto;
 `;
 
 export const BoxItem = styled.h2`
@@ -67,15 +68,22 @@ export const BoxItem = styled.h2`
 `;
 
 export const BoxLi = styled.li`
-  color: ${(props) => (props.color ? props.color : colors.header)};
+  color: ${(props) => (props.color ? props.color : colors.cinza_forte)};
   font-family: ${fonts.primary};
-  font-size: 0.95rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+`;
+
+export const BoxLiAdicional = styled.li`
+  color: ${(props) => (props.color ? props.color : colors.header)};
+  font-family: ${fonts.segudary};
+  font-size: 0.9rem;
 `;
 
 export const InfoRow = styled.p`
   margin: 6px 0;
   color: #5d4037;
-  font-size: 0.95rem;
+  font-size: 1rem;
 `;
 
 export const Steps = styled.div`
