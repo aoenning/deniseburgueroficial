@@ -93,6 +93,7 @@ export const Steps = styled.div`
   position: relative;
   padding: 0 10px;
   margin-top: 2rem;
+  margin-bottom: 20px;
 
   &::before {
     content: "";
