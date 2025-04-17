@@ -135,3 +135,4 @@ export const Label = styled.span`
   color: ${({ active }) => (active ? "#ff5722" : "#888")};
   text-align: center;
 `;
+

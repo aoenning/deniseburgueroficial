@@ -22,6 +22,7 @@ function Home() {
   const [listCardapioBurgers, setListCardapioBurgers] = useState([]);
   const [listCardapioBebidas, setListCardapioBebidas] = useState([]);
   const { SetDadosLocalStore, DadoslocalStorage } = useProdutoStore();
+  const { open, setOpen } = useState(true);
 
   useEffect(() => {
     getProdutos();
@@ -69,21 +70,29 @@ function Home() {
   return (
     <s.Container>
       <Header height={"150px"} img={img} />
-      {/* <s.Area> */}
-      <s.Title>Cardápio Denise Burger</s.Title>
-      {/* </s.Area> */}
-      <s.BoxList>
-        {listCardapioBurgers
-          .filter((burger) => burger.disponivel)
-          .filter((burger) => burger.categoria === "Tradicional")
-          .map((burger) => (
-            <CustomCard key={burger.id} burger={burger} />
-          ))}
-      </s.BoxList>
-      {/* <h1>Bebidas</h1>
-      {listCardapioBebidas.map((bebidas) => (
-        <CustomCardBebidas item={bebidas} />
-      ))} */}
+      <s.Title>Cardápio Denise Burguer</s.Title>
+      {open && (
+        <s.BoxList>
+          {listCardapioBurgers
+            .filter((burger) => burger.disponivel)
+            .filter((burger) => burger.categoria === "Tradicional")
+            .map((burger) => (
+              <CustomCard key={burger.id} burger={burger} />
+            ))}
+        </s.BoxList>
+      )}
+
+      {!open && (
+        <s.Card>
+          <s.TitleCard>Estamos fechados 😔</s.TitleCard>
+          <s.MessageCard>
+            Voltamos no <strong>sábado, 19/04/2025</strong> às{" "}
+            <strong>19:00</strong>!<br />
+            Agradecemos a sua compreensão ❤️
+          </s.MessageCard>
+        </s.Card>
+      )}
+
       <s.MainContainer></s.MainContainer>
       <Footer />
     </s.Container>

@@ -41,3 +41,26 @@ export const BoxList = styled.div`
 export const Area = styled.div`
   margin-top: 15px;
 `;
+
+export const Card = styled.div`
+  background-color: #fff3f3;
+  border: 2px solid #ff6b6b;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+`;
+
+export const TitleCard = styled.h2`
+  color: #ff4d4d;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+`;
+
+export const MessageCard = styled.p`
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+`;

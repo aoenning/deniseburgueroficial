@@ -22,6 +22,11 @@ import { db } from "../../firebase";
 import { FaSync } from "react-icons/fa";
 import { loginUnico } from "./../../auth";
 import moment from "moment/moment";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 function Pedidos() {
   const {
@@ -51,51 +56,16 @@ function Pedidos() {
 
   const steps = [
     { label: "pendente", icon: <Clock size={24} /> },
-    { label: "preparacao", icon: <ChefHat size={24} color="green" /> },
+    { label: "preparando", icon: <ChefHat size={24} color="green" /> },
     { label: "rota", icon: <Truck size={24} /> },
-    { label: "entregue", icon: <CheckCircle size={24} /> },
+    { label: "finalizado", icon: <CheckCircle size={24} /> },
     { label: "cancelado", icon: <BlocksIcon size={24} /> },
   ];
 
   const currentStepIndex = steps.findIndex((step) => step.label === status);
 
   const buscarPedidosPendentesPorTelefone = async () => {
-    // const telefone = localStorage.getItem("telefone");
     const idPedido = localStorage.getItem("id_pedido");
-    // try {
-    //   const pedidosRef = collection(db, "pedidos");
-    //   const q = query(
-    //     pedidosRef,
-    //     where("cliente.telefone", "==", telefone),
-    //     where("status", "!=", "entregue")
-    //   );
-
-    //   const snapshot = await getDocs(q);
-    //   const pedidos = snapshot.docs.map((doc) => ({
-    //     id: doc.id,
-    //     ...doc.data(),
-    //   }));
-
-    //   if (pedidos.length > 0) {
-    //     const p = pedidos[0];
-    //     const dados = {
-    //       cliente: p.cliente,
-    //       itens: p.itens,
-    //       id: p.id,
-    //       status: p.status,
-    //       pagamento: p.pagamento,
-    //       total: p.total,
-    //       data: p.data,
-    //     };
-    //     SetDadosPedido(dados);
-    //     setStatus(dados.status);
-    //   }
-
-    //   return pedidos;
-    // } catch (error) {
-    //   console.error("Erro ao buscar pedidos:", error);
-    //   return [];
-    // }
 
     try {
       const pedidoRef = doc(db, "pedidos", idPedido);
@@ -189,6 +159,23 @@ function Pedidos() {
         ))}
       </s.Steps>
       <s.Steps></s.Steps>
+      {/* <Dialog open={true} keepMounted onClose={handleClose} aria-describedby="">
+        <DialogTitle color="red">{"Informação!!"} </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="">
+            {"No momento estamos fechado!!"}
+          </DialogContentText>
+          <DialogContentText id="">
+            {"Denise Burguer agradece pela preferência!! "}
+          </DialogContentText>
+          <DialogContentText id="">
+            {"Acompanhe seu pedido na tela de pedidos."} 🛵💨
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Fechar</Button>
+        </DialogActions>
+      </Dialog> */}
 
       <Footer />
     </s.Container>
