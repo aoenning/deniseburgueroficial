@@ -9,11 +9,16 @@ import img from "../../assets/denise_burguer.jpg";
 import useProdutoStore from "../../Components/Store/useCartStore";
 import {
   collection,
-  onSnapshot,
-  doc,
-  deleteDoc,
-  orderBy,
   query,
+  where,
+  onSnapshot,
+  addDoc,
+  updateDoc,
+  doc,
+  getDocs,
+  orderBy,
+  serverTimestamp,
+  Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import * as s from "./styles";
@@ -23,6 +28,25 @@ function Home() {
   const [listCardapioBebidas, setListCardapioBebidas] = useState([]);
   const { SetDadosLocalStore, DadoslocalStorage } = useProdutoStore();
   const { open, setOpen } = useState("");
+  const [statusCaixa, setStatusCaixa] = useState(null);
+
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
+  const timestampHoje = Timestamp.fromDate(hoje);
+
+  useEffect(() => {
+    const q = query(
+      collection(db, "caixa"),
+      where("data", ">=", timestampHoje)
+    );
+    const unsub = onSnapshot(q, (snapshot) => {
+      const dataHoje = snapshot.docs.find(
+        (doc) => doc.data().status !== "fechado"
+      );
+      setStatusCaixa(dataHoje ? { id: dataHoje.id, ...dataHoje.data() } : null);
+    });
+    return () => unsub();
+  }, []);
 
   useEffect(() => {
     getProdutos();
@@ -71,27 +95,27 @@ function Home() {
     <s.Container>
       <Header height={"150px"} img={img} />
       <s.Title>Cardápio Denise Burguer</s.Title>
-      {/* {open && ( */}
-      <s.BoxList>
-        {listCardapioBurgers
-          .filter((burger) => burger.disponivel)
-          .filter((burger) => burger.categoria === "Tradicional")
-          .map((burger) => (
-            <CustomCard key={burger.id} burger={burger} />
-          ))}
-      </s.BoxList>
-      {/* )} */}
+      {statusCaixa && (
+        <s.BoxList>
+          {listCardapioBurgers
+            .filter((burger) => burger.disponivel)
+            .filter((burger) => burger.categoria === "Tradicional")
+            .map((burger) => (
+              <CustomCard key={burger.id} burger={burger} />
+            ))}
+        </s.BoxList>
+      )}
 
-      {/* {!open && (
+      {!statusCaixa && (
         <s.Card>
-          <s.TitleCard>Estamos fechados 😔</s.TitleCard>
+          <s.TitleCard>Estamos fechados !!</s.TitleCard>
           <s.MessageCard>
             Voltamos no <strong>sábado, 19/04/2025</strong> às{" "}
             <strong>19:00</strong>!<br />
             Agradecemos a sua compreensão ❤️
           </s.MessageCard>
         </s.Card>
-      )} */}
+      )}
 
       <s.MainContainer></s.MainContainer>
       <Footer />
