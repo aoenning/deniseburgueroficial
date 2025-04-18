@@ -22,7 +22,7 @@ function Home() {
   const [listCardapioBurgers, setListCardapioBurgers] = useState([]);
   const [listCardapioBebidas, setListCardapioBebidas] = useState([]);
   const { SetDadosLocalStore, DadoslocalStorage } = useProdutoStore();
-  const { open, setOpen } = useState(false);
+  const { open, setOpen } = useState("");
 
   useEffect(() => {
     getProdutos();
@@ -71,18 +71,18 @@ function Home() {
     <s.Container>
       <Header height={"150px"} img={img} />
       <s.Title>Cardápio Denise Burguer</s.Title>
-      {open && (
-        <s.BoxList>
-          {listCardapioBurgers
-            .filter((burger) => burger.disponivel)
-            .filter((burger) => burger.categoria === "Tradicional")
-            .map((burger) => (
-              <CustomCard key={burger.id} burger={burger} />
-            ))}
-        </s.BoxList>
-      )}
+      {/* {open && ( */}
+      <s.BoxList>
+        {listCardapioBurgers
+          .filter((burger) => burger.disponivel)
+          .filter((burger) => burger.categoria === "Tradicional")
+          .map((burger) => (
+            <CustomCard key={burger.id} burger={burger} />
+          ))}
+      </s.BoxList>
+      {/* )} */}
 
-      {!open && (
+      {/* {!open && (
         <s.Card>
           <s.TitleCard>Estamos fechados 😔</s.TitleCard>
           <s.MessageCard>
@@ -91,7 +91,7 @@ function Home() {
             Agradecemos a sua compreensão ❤️
           </s.MessageCard>
         </s.Card>
-      )}
+      )} */}
 
       <s.MainContainer></s.MainContainer>
       <Footer />
