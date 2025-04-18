@@ -56,7 +56,7 @@ function Pedidos() {
 
   const steps = [
     { label: "pendente", icon: <Clock size={24} /> },
-    { label: "preparando", icon: <ChefHat size={24} color="green" /> },
+    { label: "preparando", icon: <ChefHat size={24} /> },
     { label: "rota", icon: <Truck size={24} /> },
     { label: "finalizado", icon: <CheckCircle size={24} /> },
     { label: "cancelado", icon: <BlocksIcon size={24} /> },
