@@ -22,7 +22,7 @@ function Home() {
   const [listCardapioBurgers, setListCardapioBurgers] = useState([]);
   const [listCardapioBebidas, setListCardapioBebidas] = useState([]);
   const { SetDadosLocalStore, DadoslocalStorage } = useProdutoStore();
-  const { open, setOpen } = useState(true);
+  const { open, setOpen } = useState(false);
 
   useEffect(() => {
     getProdutos();
