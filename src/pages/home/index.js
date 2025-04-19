@@ -28,23 +28,43 @@ function Home() {
   const [listCardapioBebidas, setListCardapioBebidas] = useState([]);
   const { SetDadosLocalStore, DadoslocalStorage } = useProdutoStore();
   const { open, setOpen } = useState("");
-  const [statusCaixa, setStatusCaixa] = useState(null);
+  // const [statusCaixa, setStatusCaixa] = useState(null);
+  const [statusCaixa, setStatusCaixa] = useState(null); // null: ainda carregando
+  const [loading, setLoading] = useState(true);
 
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);
   const timestampHoje = Timestamp.fromDate(hoje);
+
+  // useEffect(() => {
+  //   const q = query(
+  //     collection(db, "caixa"),
+  //     where("data", ">=", timestampHoje)
+  //   );
+  //   const unsub = onSnapshot(q, (snapshot) => {
+  //     const dataHoje = snapshot.docs.find(
+  //       (doc) => doc.data().status !== "fechado"
+  //     );
+  //     setStatusCaixa(dataHoje ? { id: dataHoje.id, ...dataHoje.data() } : null);
+  //   });
+  //   return () => unsub();
+  // }, []);
 
   useEffect(() => {
     const q = query(
       collection(db, "caixa"),
       where("data", ">=", timestampHoje)
     );
+
     const unsub = onSnapshot(q, (snapshot) => {
       const dataHoje = snapshot.docs.find(
         (doc) => doc.data().status !== "fechado"
       );
+
       setStatusCaixa(dataHoje ? { id: dataHoje.id, ...dataHoje.data() } : null);
+      setLoading(false); // Agora sabemos o status
     });
+
     return () => unsub();
   }, []);
 
@@ -95,7 +115,9 @@ function Home() {
     <s.Container>
       <Header height={"150px"} img={img} />
       <s.Title>Cardápio Denise Burguer</s.Title>
-      {statusCaixa ? (
+      {loading ? (
+        <s.LoadingCard>Carregando...</s.LoadingCard>
+      ) : statusCaixa ? (
         <s.BoxList>
           {listCardapioBurgers
             .filter((burger) => burger.disponivel)
@@ -106,7 +128,7 @@ function Home() {
         </s.BoxList>
       ) : (
         <s.Card>
-          <s.TitleCard>Estamos fechados !!</s.TitleCard>
+          <s.TitleCard>Estamos fechados 😔</s.TitleCard>
           <s.MessageCard>
             Voltamos no <strong>sábado, 19/04/2025</strong> às{" "}
             <strong>19:00</strong>!<br />

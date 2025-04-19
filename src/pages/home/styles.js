@@ -64,3 +64,10 @@ export const MessageCard = styled.p`
   font-size: 1rem;
   line-height: 1.5;
 `;
+
+export const LoadingCard = styled.div`
+  padding: 40px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+`;
