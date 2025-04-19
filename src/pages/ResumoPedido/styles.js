@@ -69,20 +69,21 @@ export const ProductImage = styled.img`
 `;
 
 export const Content = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: ${(props) =>
-    props.flexDirection ? props.flexDirection : "row"};
+    props.flexDirection ? props.flexDirection : "column"};
   margin: 10px 0 0 5px;
   /* border-radius: 15px; */
   /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
   overflow: hidden;
-  font-family: "Arial", sans-serif;
-  border-bottom: ${(props) => (props.border ? props.border : "1px")} solid
-    ${colors.header};
+  font-family: ${fonts.primary};
+  /* border-bottom: ${(props) => (props.border ? props.border : "1px")} solid
+    ${colors.header}; */
   /* border-bottom: 1px solid ${colors.header}; */
-  padding: 10px;
-  /* justify-content: center;
-  align-items: center; */
+  /* padding: 10px; */
+  justify-content: start;
+  align-items: start;
 `;
 
 export const Area = styled.div`
@@ -93,14 +94,14 @@ export const Area = styled.div`
 `;
 
 export const BoxTitle = styled.div`
-  width: 70%;
+  /* width: 70%; */
   /* margin: 5px 0 0 5px; */
   /* background-color: ${colors.cinza_leve}; */
   /* padding: 5px; */
 `;
 
 export const BoxButton = styled.div`
-  width: 30%;
+  /* width: 30%; */
   /* margin: 5px 0 0 5px; */
   /* background-color: ${colors.cinza_leve}; */
   padding: 5px;
@@ -172,7 +173,7 @@ export const Footer = styled.div`
   align-items: center;
   position: fixed;
   bottom: 0;
-  margin-bottom: 0px;
+  /* margin-bottom: 0px; */
 `;
 
 export const ListContainer = styled.div`
@@ -209,7 +210,8 @@ export const ContainerEndereco = styled.div`
   flex-direction: column;
   gap: 1rem;
   overflow: auto;
-  margin-top: 15px;
+  /* margin-top: 5px; */
+  /* margin-bottom: 45px; */
 `;
 
 export const OptionEndereco = styled.label`
@@ -230,4 +232,8 @@ export const InputEndereco = styled.input`
 
 export const AreaPagamento = styled.input`
   margin-bottom: 25px;
+`;
+
+export const Divisão = styled.div`
+  margin-bottom: 60px;
 `;

@@ -29,7 +29,7 @@ export const Container = styled.div`
 export const Modal = styled.div`
   padding: 15px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   /* min-width: 400px; */
   /* min-height: 400px; */
   background: ${colors.white};
@@ -39,9 +39,9 @@ export const Modal = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
-
-  /* margin-bottom: 20px;; */
+  /* box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22); */
+  /* margin-top: 50px; */
+  /* margin-bottom: 20px; */
 `;
 
 export const Area = styled.div`
@@ -222,4 +222,9 @@ export const Box = styled.div`
   flex-direction: column;
   align-items: start;
   overflow: "auto";
+`;
+
+export const AreaContainer = styled.div`
+  /* width: 100%; */
+  height: 50px;
 `;

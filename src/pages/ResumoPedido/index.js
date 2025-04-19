@@ -176,11 +176,8 @@ function ResumoPedido() {
           onChange={(txt) => {}}
         />
       )}
-
-      {/* <s.AreaPagamento> */}
+      {/* <s.ListContainer> */}
       <RadioButton />
-      {/* </s.AreaPagamento> */}
-
       <s.ContainerEndereco>
         <s.OptionEndereco selected={tipoEntrega === "retirada"}>
           <s.InputEndereco
@@ -195,9 +192,9 @@ function ResumoPedido() {
               <s.Area>
                 <s.Title color={colors.brack}>Retirar no local</s.Title>
               </s.Area>
-              <s.Description>Rua: {local.rua}</s.Description>
-              <s.Description>Numero: {local.numero}</s.Description>
-              <s.Description>Bairro: {local.bairro}</s.Description>
+              <s.Description>
+                Rua: {local.rua}, {local.numero}, {local.bairro}
+              </s.Description>
               <s.Description>Complemento: {local.complemento}</s.Description>
               <s.Description>Cidade: {cliente.cidade}</s.Description>
             </s.BoxTitle>
@@ -218,9 +215,9 @@ function ResumoPedido() {
               <s.Area>
                 <s.Title color={colors.brack}>Endereço para entrega</s.Title>
               </s.Area>
-              <s.Description>Rua: {cliente.rua}</s.Description>
-              <s.Description>Numero: {cliente.numero}</s.Description>
-              <s.Description>Bairro: {cliente.bairro}</s.Description>
+              <s.Description>
+                Rua: {cliente.rua}, {cliente.numero}, {cliente.bairro}.
+              </s.Description>
               <s.Description>Complemento: {cliente.complemento}</s.Description>
               <s.Description>Cidade: {cliente.cidade}</s.Description>
             </s.BoxTitle>
@@ -242,8 +239,9 @@ function ResumoPedido() {
             </s.BoxButton>
           </s.Content>
         </s.OptionEndereco>
+        <s.Divisão></s.Divisão>
       </s.ContainerEndereco>
-
+      {/* </s.ListContainer> */}
       <Dialog open={open} keepMounted onClose={handleClose} aria-describedby="">
         <DialogTitle color="red">{"Parabéns!!"} 😄 </DialogTitle>
         <DialogContent>

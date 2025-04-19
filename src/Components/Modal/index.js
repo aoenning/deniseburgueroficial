@@ -205,7 +205,11 @@ function Modal({ exibir, data, onClick, value, onChange }) {
               backgroudColor={""}
             />
           </s.AreaInput>
+          <s.AreaInput width="100%">
+           <s.AreaContainer></s.AreaContainer>
+          </s.AreaInput>
         </s.Box>
+
         <s.AreaBotton>
           <BottomComponet
             width={"100%"}

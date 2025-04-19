@@ -24,7 +24,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 1.0rem;
+  font-size: 1rem;
   margin-bottom: 16px;
   font-family: ${fonts.primary};
   color: ${colors.brack};
@@ -65,7 +65,7 @@ export default function PaymentCard() {
   return (
     <Card>
       <Content>
-        <Title>Pagamento:</Title>
+        <Title>Pagamento na entrega do pedido:</Title>
         {tipopagamento.map((pgto) => (
           <RadioGroup>
             <RadioOption>

@@ -165,6 +165,7 @@ const useCartStore = create((set) => ({
     // telefone: "",
     rua: "Nossa Senhora Aparecida",
     complemento: "Ao lado casa de festa SFFEST",
+    numero: "13",
     bairro: "Centro",
     cidade: "Denise",
   },
