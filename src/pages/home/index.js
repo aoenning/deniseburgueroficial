@@ -95,7 +95,7 @@ function Home() {
     <s.Container>
       <Header height={"150px"} img={img} />
       <s.Title>Cardápio Denise Burguer</s.Title>
-      {statusCaixa && (
+      {statusCaixa ? (
         <s.BoxList>
           {listCardapioBurgers
             .filter((burger) => burger.disponivel)
@@ -104,9 +104,7 @@ function Home() {
               <CustomCard key={burger.id} burger={burger} />
             ))}
         </s.BoxList>
-      )}
-
-      {!statusCaixa && (
+      ) : (
         <s.Card>
           <s.TitleCard>Estamos fechados !!</s.TitleCard>
           <s.MessageCard>
@@ -116,7 +114,6 @@ function Home() {
           </s.MessageCard>
         </s.Card>
       )}
-
       <s.MainContainer></s.MainContainer>
       <Footer />
     </s.Container>
