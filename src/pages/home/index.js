@@ -128,10 +128,10 @@ function Home() {
         </s.BoxList>
       ) : (
         <s.Card>
-          <s.TitleCard>Estamos fechados 😔</s.TitleCard>
+          <s.TitleCard>Ola, estamos fechados 😔</s.TitleCard>
           <s.MessageCard>
-            Voltamos no <strong>sábado, 19/04/2025</strong> às{" "}
-            <strong>19:00</strong>!<br />
+            {/* Voltamos no <strong>sábado, 19/04/2025</strong> às{" "}
+            <strong>19:00</strong>!<br /> */}
             Agradecemos a sua compreensão ❤️
           </s.MessageCard>
         </s.Card>
