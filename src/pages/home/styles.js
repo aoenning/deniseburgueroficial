@@ -13,7 +13,7 @@ export const Container = styled.div`
   /* justify-content: center; */
 
   outline: none;
-  background-color: ${colors.white};
+  background-color: ${colors.brack};
   /* min-height: 100vh; */
 `;
 
@@ -31,6 +31,7 @@ export const Title = styled.p`
   font-family: ${fonts.primary};
   font-size: 25px;
   margin-top: 15px;
+  color: ${colors.white};
 `;
 
 export const BoxList = styled.div`

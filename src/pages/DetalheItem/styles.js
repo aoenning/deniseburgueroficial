@@ -9,6 +9,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px;
+  background-color: ${colors.brack};
 `;
 
 export const Header = styled.div`
@@ -30,7 +31,8 @@ export const Header = styled.div`
 export const BoxItem = styled.div`
   margin-top: 15px;
   width: 100%;
-  background-color: ${colors.cinza_leve};
+  background-color: ${colors.cinzaChumbo};
+
   border: 1px solid ${colors.cinza_leve};
   border-radius: 10px;
   padding: 10px;
@@ -63,6 +65,7 @@ export const Content = styled.div`
   margin-top: 5px;
   /* padding: 10px; */
   width: 100%;
+  background-color: ${colors.brack};
 `;
 
 export const Title = styled.h1`
@@ -70,11 +73,11 @@ export const Title = styled.h1`
   /* margin: 10px 0; */
   text-align: start;
   font-family: ${fonts.primary};
-  color: ${colors.cinza_forte};
+  color: ${colors.amareloQueijo};
 `;
 
 export const Description = styled.p`
-  color: ${colors.cinza_forte};
+  color: ${colors.white};
   /* margin: 10px 0; */
   text-align: start;
   font-size: 15px;
@@ -101,14 +104,17 @@ export const Option = styled.div`
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
+  background-color: ${colors.pretoChumbo};
   /* padding: 10px; */
   /* border: 1px solid ${({ selected }) => (selected ? "#000" : "#fff")}; */
-  border-bottom: 1px solid ${colors.cinza};
+  /* border-bottom: 1px solid ${colors.cinza}; */
   /* border-radius: 10px; */
   cursor: pointer;
   /* margin-bottom: 30px; */
   /* height: 60px; */
-  margin-left: 10px;
+  /* margin-left: 10px; */
+  margin-right: 10px;
+  margin-top: 10px;
 `;
 
 export const OptionInfo = styled.div`
@@ -117,7 +123,7 @@ export const OptionInfo = styled.div`
 
 export const OptionName = styled.p`
   text-align: start;
-  color: ${colors.header};
+  color: ${colors.white};
   font-family: ${fonts.primary};
   font-size: 15px;
   font-weight: bold;
@@ -135,7 +141,7 @@ export const OptionPrice = styled.p`
   font-size: 10px;
   font-weight: bold;
   text-align: start;
-  color: ${colors.cinza_forte};
+  color: ${colors.vermelhoChurrasco};
 `;
 
 export const OptionImage = styled.img`
@@ -158,7 +164,7 @@ export const QuantityContainer = styled.div`
 export const QuantityButton = styled.button`
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: ${colors.pretoChumbo};
   align-items: center;
   justify-content: center;
   border: none;
@@ -167,6 +173,7 @@ export const QuantityButton = styled.button`
   cursor: pointer;
   width: 40px;
   height: 40px;
+
   /* border-top: 1px solid ${colors.brack}; */
   /* border-bottom: 1px solid ${colors.brack}; */
   /* border-radius: 15px; */
@@ -175,12 +182,12 @@ export const QuantityButton = styled.button`
 export const Quantity = styled.span`
   font-size: 18px;
   margin: 0 15px;
-  color: ${colors.cinza_forte};
+  color: ${colors.white};
 `;
 
 export const AddButton = styled.button`
   width: 96%;
-  background: ${colors.brack};
+  background: ${colors.vermelhoChurrasco};
   color: white;
   font-size: 18px;
   padding: 15px;
@@ -201,7 +208,7 @@ export const TextArea = styled.textarea`
   height: 80px;
   /* margin-top: 5px; */
   padding: 5px;
-  border: 1px solid ${colors.cinza};
+  border: 1px solid ${colors.cinzaChumbo};
   border-radius: 5px;
   font-size: 14px;
   resize: none;
@@ -217,6 +224,8 @@ export const RadioLabel = styled.label`
   cursor: pointer;
   font-size: 16px;
   font-family: ${fonts.primary};
+  background-color: ${colors.brack};
+  color: ${colors.laraja_forte};
 `;
 
 export const RadioInput = styled.input`

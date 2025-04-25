@@ -6,6 +6,9 @@ const colors = {
   segudary: "#2a2141",
   white: "#fff",
   brack: "#000", //--"#11111f",
+  pretoFosco: "#212121",
+  pretoChumbo: "#1C1C1C",
+  cinzaChumbo: "#424242",
   green: "#2FB86E",
   green_claro: "#0B6138",
   green_agua: "#CEF0E0",
@@ -19,6 +22,7 @@ const colors = {
   yello: "#5E610B",
   red: "#B40431",
   red_segudary: "#b91c1c",
+  vermelhoChurrasco: "#C62828",
   laraja: "#FE642E",
   laraja_forte: "#FF0000",
   roxo: "#483d8b",
@@ -27,6 +31,7 @@ const colors = {
   yello: "#F5ECCE",
   yello_primary: "#f2a900",
   yello_segudary: "#ff9800",
+  amareloQueijo: "#FFD54F",
 };
 
 export default colors;
