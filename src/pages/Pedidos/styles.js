@@ -12,6 +12,7 @@ export const Container = styled.div`
   /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.08); */
   /* font-family: "Arial", sans-serif; */
   height: 100vh;
+  background: ${colors.pretoChumbo};
 `;
 
 export const Header = styled.div`
@@ -22,7 +23,7 @@ export const Header = styled.div`
   /* position: relative; */
   width: 100%;
   height: 60px;
-  background: ${colors.brack};
+  background: ${colors.pretoChumbo};
 `;
 
 export const BoxIcon = styled.div`
@@ -94,6 +95,7 @@ export const Steps = styled.div`
   padding: 0 10px;
   margin-top: 2rem;
   margin-bottom: 20px;
+  background: ${colors.pretoChumbo};
 
   &::before {
     content: "";
@@ -135,4 +137,3 @@ export const Label = styled.span`
   color: ${({ active }) => (active ? "#ff5722" : "#888")};
   text-align: center;
 `;
-

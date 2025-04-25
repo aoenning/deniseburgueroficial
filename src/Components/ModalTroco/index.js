@@ -102,12 +102,12 @@ function ModalTroco({ exibir, data, onClick, value, onChange }) {
         </s.Box>
         <s.AreaBotton>
           <BottomComponet
-            width={"90%"}
+            width={"96%"}
             height={"50px"}
             text={"Salvar"}
             disabled={""}
-            backgroudColor={colors.brack}
-            bordercolor={colors.brack}
+            backgroudColor={colors.vermelhoChurrasco}
+            bordercolor={colors.vermelhoChurrasco}
             textColor={colors.white}
             onClick={() => handleCloseModal("")}
           >

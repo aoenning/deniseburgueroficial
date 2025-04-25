@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 100vh;
   padding: 5px;
   outline: none;
-  background-color: ${colors.white};
+  background-color: ${colors.brack};
 `;
 
 export const Header = styled.div`
@@ -54,7 +54,7 @@ export const BackButton = styled.button`
   margin-left: 10px;
   border: 1px solid ${colors.cinza_forte};
   border-radius: 15px;
-  background-color: #fff;
+  background-color: ${colors.white};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,12 +84,13 @@ export const Content = styled.div`
   /* padding: 10px; */
   justify-content: start;
   align-items: start;
+  background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : colors.pretoChumbo)}
 `;
 
 export const Area = styled.div`
   /* width: 98%; */
   /* margin: 5px 0 0 5px; */
-  background-color: ${colors.white};
+  /* background-color: ${colors.white}; */
   /* padding: 5px; */
 `;
 
@@ -131,7 +132,7 @@ export const Description = styled.p`
   font-size: 0.8rem;
   /* margin-bottom: 16px; */
   font-family: ${fonts.primary};
-  color: ${colors.brack};
+  color: ${colors.white};
 `;
 
 export const Price = styled.p`
@@ -147,7 +148,7 @@ export const AddButton = styled.button`
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "auto")};
   background: ${(props) =>
-    props.background ? props.background : colors.brack};
+    props.background ? props.background : colors.vermelhoChurrasco};
   color: ${(props) => (props.color ? props.color : colors.white)};
   border: 1px solid ${colors.brack};
   font-size: 18px;
@@ -198,11 +199,13 @@ export const RadioLabel = styled.label`
   cursor: pointer;
   font-size: 16px;
   font-family: ${fonts.primary};
+  /* background-color: ${colors.pretoChumbo} */
 `;
 
 export const RadioInput = styled.input`
   margin-right: 8px;
   accent-color: #e07a5f; // cor do radio selecionado
+  /* background-color: ${colors.pretoChumbo} */
 `;
 
 export const ContainerEndereco = styled.div`
@@ -210,7 +213,8 @@ export const ContainerEndereco = styled.div`
   flex-direction: column;
   gap: 1rem;
   overflow: auto;
-  /* margin-top: 5px; */
+  margin-top: 10px;
+  background-color: ${colors.brack};
   /* margin-bottom: 45px; */
 `;
 
@@ -219,11 +223,14 @@ export const OptionEndereco = styled.label`
   align-items: center;
   gap: 0.6rem;
   padding: 0.8rem 1rem;
-  border: 2px solid ${({ selected }) => (selected ? "#222" : "#ccc")};
+  border: 2px solid ${({ selected }) => (selected ? colors.cinza : colors.pretoChumbo)};
   border-radius: 10px;
   cursor: pointer;
-  background-color: ${({ selected }) => (selected ? "#f5f5f5" : "#fff")};
+  background-color: ${({ selected }) =>
+    selected ? colors.pretoChumbo : colors.pretoChumbo};
   transition: all 0.2s ease;
+  background-color: ${colors.pretoChumbo};
+  margin-top: 15px;
 `;
 
 export const InputEndereco = styled.input`

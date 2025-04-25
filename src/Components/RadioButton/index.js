@@ -4,13 +4,14 @@ import useProdutoStore from "../../Components/Store/useCartStore";
 import { colors, fonts } from "../../Styles";
 
 const Card = styled.div`
-  width: 96%;
-  background: ${colors.white};
-  /* border-radius: 16px; */
-  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
-  /* overflow: hidden; */
+  width: 97%;
+  background: ${colors.pretoChumbo};
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   font-family: ${fonts.primary};
-  /* margin: 15px 0px 0px 10px; */
+  margin: 15px 0px 0px 5px;
+  padding: 2px;
 `;
 
 const Image = styled.img`
@@ -27,7 +28,7 @@ const Title = styled.p`
   font-size: 1rem;
   margin-bottom: 16px;
   font-family: ${fonts.primary};
-  color: ${colors.brack};
+  color: ${colors.amareloQueijo};
   font-weight: bold;
 `;
 
@@ -35,6 +36,7 @@ const RadioGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin: 05px 0px 0px 0px;
 `;
 
 const RadioOption = styled.label`
@@ -44,7 +46,7 @@ const RadioOption = styled.label`
   font-size: 0.8rem;
   cursor: pointer;
   font-family: ${fonts.primary};
-  color: ${colors.brack};
+  color: ${colors.white};
 
   input {
     accent-color: ${colors.brue};
@@ -78,26 +80,26 @@ export default function PaymentCard() {
                   SetPagamento(e.target.value);
                 }}
               />
-              {pgto === "pix" && (
+              {/* {pgto === "pix" && (
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/deniseburgues-f1924.firebasestorage.app/o/pix.png?alt=media&token=0b64f307-df45-48fe-8f16-9391ef3255b9"
                   alt="Pix"
                 />
-              )}
+              )} */}
 
-              {pgto == "cartão" && (
+              {/* {pgto == "cartão" && (
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/deniseburgues-f1924.firebasestorage.app/o/633611.png?alt=media&token=46d02867-4363-4925-b1bf-195b2598238e"
                   alt="Cartão"
                 />
-              )}
+              )} */}
 
-              {pgto == "dinheiro" && (
+              {/* {pgto == "dinheiro" && (
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/deniseburgues-f1924.firebasestorage.app/o/images.jpeg?alt=media&token=561c9501-b642-46f9-8f2d-4a3382424cec"
                   alt="Dinheiro"
                 />
-              )}
+              )} */}
 
               {pgto}
             </RadioOption>

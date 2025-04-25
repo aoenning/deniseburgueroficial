@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  /* padding: 10px; */
   background-color: ${colors.brack};
 `;
 
@@ -28,12 +28,22 @@ export const Header = styled.div`
   /* position: fixed; */
 `;
 
-export const BoxItem = styled.div`
-  margin-top: 15px;
-  width: 100%;
-  background-color: ${colors.cinzaChumbo};
+export const BoxItemHeader = styled.div`
+  margin: 10px 0px 0px 0px;
+  width: 97%;
+  background-color: ${colors.pretoChumbo};
 
-  border: 1px solid ${colors.cinza_leve};
+  border: 1px solid ${colors.cinza};
+  border-radius: 10px;
+  padding: 10px;
+`;
+
+export const BoxItem = styled.div`
+  margin: 10px 0px 0px 0px;
+  width: 100%;
+  background-color: ${colors.pretoChumbo};
+
+  border: 1px solid ${colors.cinza};
   border-radius: 10px;
   padding: 10px;
 `;
@@ -64,8 +74,8 @@ export const ProductImage = styled.img`
 export const Content = styled.div`
   margin-top: 5px;
   /* padding: 10px; */
-  width: 100%;
-  background-color: ${colors.brack};
+  width: 97%;
+  background-color: ${colors.brack};  
 `;
 
 export const Title = styled.h1`
@@ -105,16 +115,18 @@ export const Option = styled.div`
   flex-direction: row;
   align-items: center;
   background-color: ${colors.pretoChumbo};
-  /* padding: 10px; */
+  padding: 5px;
   /* border: 1px solid ${({ selected }) => (selected ? "#000" : "#fff")}; */
   /* border-bottom: 1px solid ${colors.cinza}; */
-  /* border-radius: 10px; */
+  border-radius: 10px;
   cursor: pointer;
   /* margin-bottom: 30px; */
   /* height: 60px; */
   /* margin-left: 10px; */
-  margin-right: 10px;
+  /* margin-right: 10px; */
   margin-top: 10px;
+
+
 `;
 
 export const OptionInfo = styled.div`

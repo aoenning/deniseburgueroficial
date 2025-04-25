@@ -112,7 +112,7 @@ function Detalhe() {
           />
         </s.BackButton>
       </s.Header>
-      <s.BoxItem>
+      <s.BoxItemHeader>
         <s.Title>{produto.nome}</s.Title>
         <s.Price>
           {produto.preco.toLocaleString("pt-BR", {
@@ -121,7 +121,7 @@ function Detalhe() {
           })}
         </s.Price>
         <s.Description>{produto.detalhe}</s.Description>
-      </s.BoxItem>
+      </s.BoxItemHeader>
 
       <s.Content>
         <s.BoxItem>

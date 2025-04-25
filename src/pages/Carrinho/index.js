@@ -151,7 +151,7 @@ function Carrinho() {
           disabled={cart.length ? false : true}
           justifyContent={"space-between"}
           borderColor={""}
-          background={cart.length ? colors.brack : colors.cinza}
+          background={cart.length ? colors.vermelhoChurrasco : colors.cinza}
           color={""}
           onClick={(item) => {
             handleNext();

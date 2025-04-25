@@ -31,7 +31,7 @@ export const Modal = styled.div`
   width: 100%;
   height: 45%;
   /* min-width: 400px; */
-  /* min-height: 400px; */
+  min-height: 400px;
   background: ${colors.white};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

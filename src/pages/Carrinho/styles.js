@@ -7,6 +7,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   padding: 5px;
+  background-color: ${colors.brack};
   /* justify-content: center; */
   /* align-items: center; */
   /* flex-direction: column; */
@@ -24,7 +25,7 @@ export const Header = styled.div`
   position: relative;
   width: 100%;
   height: 60px;
-  background: ${colors.brack};
+  background-color: ${colors.brack};
 `;
 
 export const BoxItem = styled.div`
@@ -38,7 +39,7 @@ export const BoxIcon = styled.div`
   font-size: 20px;
   cursor: pointer;
   z-index: auto;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   /* border: 1px solid ${colors.white}; */
   border-radius: 15px;
   background-color: ${colors.brack};
@@ -46,7 +47,7 @@ export const BoxIcon = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70px;
+  width: 40px;
   height: 30px;
 `;
 

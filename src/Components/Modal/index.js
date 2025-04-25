@@ -99,7 +99,7 @@ function Modal({ exibir, data, onClick, value, onChange }) {
       <s.Modal>
         <s.Area
           justifyContent={"right"}
-          backgroundColor={colors.white}
+          backgroundColor={colors.pretoChumbo}
           marginTop={"0px"}
         >
           <BottomComponet
@@ -107,15 +107,15 @@ function Modal({ exibir, data, onClick, value, onChange }) {
             height={"21px"}
             text={"X"}
             disabled={""}
-            backgroudColor={colors.brack}
+            backgroudColor={colors.amareloQueijo}
             bordercolor={colors.brack}
-            textColor={colors.white}
+            textColor={colors.vermelhoChurrasco}
             onClick={() => handleCloseModal("")}
           >
             <IconClosed color={colors.white} />
           </BottomComponet>
         </s.Area>
-        <s.Area>
+        <s.Area backgroundColor={colors.pretoChumbo}>
           <s.Title>Preencha os dados do cliente</s.Title>
         </s.Area>
         <s.Box>
@@ -143,7 +143,7 @@ function Modal({ exibir, data, onClick, value, onChange }) {
               backgroudColor={""}
             />
           </s.AreaInput>
-          <s.Area>
+          <s.Area backgroundColor={colors.pretoChumbo}>
             <s.Title>Preencha os dados da entrega</s.Title>
           </s.Area>
           <s.AreaInput width="100%">
@@ -206,7 +206,7 @@ function Modal({ exibir, data, onClick, value, onChange }) {
             />
           </s.AreaInput>
           <s.AreaInput width="100%">
-           <s.AreaContainer></s.AreaContainer>
+            <s.AreaContainer></s.AreaContainer>
           </s.AreaInput>
         </s.Box>
 
@@ -216,8 +216,8 @@ function Modal({ exibir, data, onClick, value, onChange }) {
             height={"50px"}
             text={"Avançar"}
             disabled={""}
-            backgroudColor={colors.brack}
-            bordercolor={colors.brack}
+            backgroudColor={colors.vermelhoChurrasco}
+            bordercolor={colors.vermelhoChurrasco}
             textColor={colors.white}
             onClick={() => handleNext()}
           >

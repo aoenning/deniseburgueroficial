@@ -5,16 +5,17 @@ export const Card = styled.div`
   display: flex;
   /* align-items: center; */
   gap: 16px;
-  /* padding: 16px; */
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  padding: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   /* border-radius: 16px; */
-  /* background: #fff; */
-  /* margin-top: 15px; */
+  background: ${colors.pretoChumbo};
+  margin-top: 15px;
   width: 100%;
   max-height: 250px;
+  border-radius: 15px;
   /* overflow-y: "auto"; */
   outline: none;
-  border-bottom: 1px solid ${colors.cinza};
+  /* border-bottom: 1px solid ${colors.cinza}; */
 `;
 
 export const Header = styled.div`
@@ -63,6 +64,7 @@ export const Title = styled.p`
   width: 70%;
   margin-left: 10px;
   font-family: ${fonts.primary};
+  color: ${colors.amareloQueijo};
 `;
 
 export const SubTitle = styled.p`
@@ -72,10 +74,11 @@ export const SubTitle = styled.p`
   margin-left: 10px;
   font-family: ${fonts.primary};
   margin-left: 5px;
+  color: ${colors.white};
 `;
 
 export const Price = styled.p`
-  color: #6b7280;
+  color: ${colors.vermelhoChurrasco};
 `;
 
 export const QuantityContainer = styled.div`
@@ -90,10 +93,11 @@ export const QuantityText = styled.span`
   font-weight: 500;
   width: 24px;
   text-align: center;
+  color: ${colors.white};
 `;
 
 export const TotalPrice = styled.p`
-  color: ${colors.green_claro};
+  color: ${colors.vermelhoChurrasco};
   /* font-weight: 600; */
   margin-top: 20px;
   font-family: ${fonts.segudary};
@@ -112,13 +116,14 @@ export const Button = styled.button`
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  /* border-bottom: 1px solid ${colors.white}; */
   cursor: pointer;
   transition: background 0.2s;
   /* background-color: ${colors.brack}; */
 
   &:hover {
     background: ${({ variant }) =>
-      variant === "destructive" ? colors.cinza : colors.cinza};
+      variant === "destructive" ? colors.white : colors.white};
   }
 `;
 

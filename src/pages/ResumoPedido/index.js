@@ -153,8 +153,8 @@ function ResumoPedido() {
         ></s.BoxIcon>
       </s.Header>
       {cliente.nome && (
-        <s.Content flexDirection={"column"}>
-          <s.Title color={colors.brack}>{cliente.nome}</s.Title>
+        <s.Content backgroundColor={colors.brack} flexDirection={"column"}>
+          <s.Title color={colors.amareloQueijo}>{cliente.nome}</s.Title>
           <s.Description>Telefone: {cliente.telefone}</s.Description>
         </s.Content>
       )}
@@ -190,7 +190,7 @@ function ResumoPedido() {
           <s.Content border={"none"}>
             <s.BoxTitle>
               <s.Area>
-                <s.Title color={colors.brack}>Retirar no local</s.Title>
+                <s.Title color={colors.amareloQueijo}>Retirar no local</s.Title>
               </s.Area>
               <s.Description>
                 Rua: {local.rua}, {local.numero}, {local.bairro}
@@ -213,7 +213,7 @@ function ResumoPedido() {
           <s.Content border={"none"}>
             <s.BoxTitle>
               <s.Area>
-                <s.Title color={colors.brack}>Endereço para entrega</s.Title>
+                <s.Title color={colors.amareloQueijo}>Endereço para entrega</s.Title>
               </s.Area>
               <s.Description>
                 Rua: {cliente.rua}, {cliente.numero}, {cliente.bairro}.
@@ -265,7 +265,7 @@ function ResumoPedido() {
           disabled={pagamento ? false : true}
           justifyContent={"space-between"}
           borderColor={""}
-          background={pagamento ? colors.brack : colors.cinza}
+          background={pagamento ? colors.vermelhoChurrasco : colors.cinza}
           color={""}
           onClick={(item) => {
             handleFinalizarPedido();

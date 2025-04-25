@@ -7,14 +7,14 @@ export const Container = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(77, 77, 77, 0.5);
-  opacity: 0.97;
+  /* background: rgba(77, 77, 77, 0.5); */
+  /* opacity: 0.97; */
   display: flex;
   justify-content: center;
   align-items: end;
   animation: fadeInDown 0.4s;
   z-index: 2;
-  @keyframes fadeInDown {
+  /* @keyframes fadeInDown {
     0% {
       opacity: 0;
       transform: translateY(-50px);
@@ -23,7 +23,7 @@ export const Container = styled.div`
       opacity: 1;
       transform: translateY(0px);
     }
-  }
+  } */
 `;
 
 export const Modal = styled.div`
@@ -32,9 +32,9 @@ export const Modal = styled.div`
   height: 100vh;
   /* min-width: 400px; */
   /* min-height: 400px; */
-  background: ${colors.white};
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  background: ${colors.pretoChumbo};
+  /* border-top-left-radius: 20px; */
+  /* border-top-right-radius: 20px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,6 +66,7 @@ export const AreaBotton = styled.div`
   align-items: center;
   position: fixed;
   bottom: 0;
+  margin-bottom: 5px;
 `;
 
 export const AreaListItem = styled.div`
@@ -182,7 +183,7 @@ export const SearchInput = styled.input`
 
 export const Title = styled.text`
   margin: 5px 0px 0px 15px;
-  color: ${colors.brack};
+  color: ${colors.amareloQueijo};
   font-size: 17px;
   font-weight: bold;
   /* opacity: 0.8; */
@@ -191,7 +192,7 @@ export const Title = styled.text`
 
 export const TitleItem = styled.text`
   margin: 5px 0px 0px 15px;
-  color: ${colors.green_claro};
+  color: ${colors.amareloQueijo};
   font-size: 12px;
   font-weight: bold;
   opacity: 0.8;
@@ -199,7 +200,7 @@ export const TitleItem = styled.text`
 `;
 
 export const TitleInput = styled.text`
-  color: ${colors.cinza_forte};
+  color: ${colors.amareloQueijo};
   font-size: 12px;
   margin-left: 5px;
   font-weight: bold;
