@@ -4,7 +4,7 @@
   "description": "Pedidos e gestão da hamburgueria artesanal Denise Burguer",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#000000",
   "theme_color": "#111111",
   "icons": [
     {
@@ -26,5 +26,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#000000"
 }
